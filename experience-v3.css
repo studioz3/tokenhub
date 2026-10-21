@@ -83,7 +83,7 @@ p,li,dd,blockquote,figcaption,.lead,.footnote{ text-wrap:pretty; }
 
 /* Give the access panel breathing room and keep the portrait and brand in frame. */
 @media(min-width:761px){
- .auth .photo-auth{margin-top:32px}
+ .auth .photo-auth{margin-top:0}
  .photo-auth .auth-photo img{object-position:65% 12%}
  .photo-auth .auth-panel-copy{padding-bottom:100px;min-height:490px}
  .photo-auth .auth-panel-copy .brand-symbol{width:230px;height:230px;right:24px;bottom:24px}
