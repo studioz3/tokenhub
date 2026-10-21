@@ -16,15 +16,19 @@
 
 /* Home photograph: 100% visible on the right, fading to 0% on the left. */
 .hero-photo{isolation:isolate;background:var(--navy)}
-.hero-photo::before{content:"";position:absolute;inset:0;z-index:-1;pointer-events:none;background:linear-gradient(90deg,rgba(8,54,80,.32),rgba(8,54,80,.08)),url("assets/photos/hero-imobiliario.webp") center right/cover no-repeat;-webkit-mask-image:linear-gradient(to right,transparent 0%,transparent 24%,#000 100%);mask-image:linear-gradient(to right,transparent 0%,transparent 24%,#000 100%)}
+.hero-photo::before{content:"";position:absolute;inset:0;z-index:-1;pointer-events:none;background:linear-gradient(90deg,rgba(8,54,80,.32),rgba(8,54,80,.08)),url("assets/photos/hero-terrenos-v2.webp") center right/cover no-repeat;-webkit-mask-image:linear-gradient(to right,transparent 0%,transparent 24%,#000 100%);mask-image:linear-gradient(to right,transparent 0%,transparent 24%,#000 100%)}
 .hero-photo .hero-grid{grid-template-columns:1fr}
 .hero-photo .hero-copy{max-width:660px}
 .hero-photo h1,.hero-photo .hero-copy>p{text-shadow:0 2px 18px rgba(0,17,30,.4)}
 .hero-photo .hero-copy>p{color:#d1e2ec}
 .hero-photo .hero-foot{color:#c2d8e4}
 .hero-photo .btn-light{background:rgba(8,54,80,.65)}
-@media(max-width:760px){.hero-photo::before{background-position:62% center;background-image:linear-gradient(rgba(8,54,80,.55),rgba(8,54,80,.75)),url("assets/photos/hero-imobiliario.webp");-webkit-mask-image:linear-gradient(to right,transparent,#000);mask-image:linear-gradient(to right,transparent,#000)}.hero-photo .hero-copy{max-width:100%}}
+@media(max-width:760px){.hero-photo::before{background-position:62% center;background-image:linear-gradient(rgba(8,54,80,.55),rgba(8,54,80,.75)),url("assets/photos/hero-terrenos-v2.webp");-webkit-mask-image:linear-gradient(to right,transparent,#000);mask-image:linear-gradient(to right,transparent,#000)}.hero-photo .hero-copy{max-width:100%}}
 
 /* White labels on blue actions and ExtraBold home heading. */
 .btn-primary,.btn-primary:hover,.btn-primary:focus-visible,.btn-dark,.btn-dark:hover,.otc-desk .btn-primary:disabled{color:#fff}
 .hero h1,.hero h1 em{font-weight:800}
+
+/* Land tokenization art carries its own clear space for the title. */
+.hero-photo::before{background-image:linear-gradient(90deg,rgba(8,54,80,.18),transparent 75%),url("assets/photos/hero-terrenos-v2.webp");background-position:center right;-webkit-mask-image:linear-gradient(to right,transparent 0%,#000 65%);mask-image:linear-gradient(to right,transparent 0%,#000 65%)}
+@media(max-width:760px){.hero-photo::before{background-image:linear-gradient(rgba(8,54,80,.58),rgba(8,54,80,.78)),url("assets/photos/hero-terrenos-v2.webp");background-position:72% center}}
