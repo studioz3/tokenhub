@@ -12,7 +12,7 @@ Versão exportada: 21/10/2026, após a correção do caminho de navegação em u
 node server.cjs
 ```
 
-Abra http://127.0.0.1:4188 no navegador. Para entrar, escolha **Explorar a plataforma**. Não precisa de login real nem de instalar pacotes para usar o site. Não abra apenas `dist/index.html` por duplo clique: os módulos JavaScript precisam de um servidor HTTP.
+Para entrar, escolha **Explorar a plataforma**. Não precisa de login real nem de instalar pacotes para usar o site. Não abra apenas `dist/index.html` por duplo clique: os módulos JavaScript precisam de um servidor HTTP.
 
 `npm start` faz o mesmo. Se a porta estiver ocupada, configure `TOKENHUB_PORT`. No Windows, o atalho `Abrir TokenHub.cmd` é uma alternativa quando o Chrome está instalado no caminho padrão.
 
