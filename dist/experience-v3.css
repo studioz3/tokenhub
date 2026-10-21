@@ -55,3 +55,5 @@ p,li,dd,blockquote,figcaption,.lead,.footnote{ text-wrap:pretty; }
 @media(max-width:760px){
  .hero-photo::before{background-image:linear-gradient(to right,rgba(0,0,0,.94),rgba(0,0,0,.68) 60%,rgba(0,0,0,.42)),url("assets/photos/hero-terrenos-v2.webp")}
 }
+
+@media(max-width:760px){.editorial-break{display:none}}
