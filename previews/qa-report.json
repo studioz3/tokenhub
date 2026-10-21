@@ -1,0 +1,261 @@
+{
+  "date": "2026-10-21",
+  "passed": 52,
+  "results": [
+    {
+      "width": 375,
+      "route": "/",
+      "passed": true
+    },
+    {
+      "width": 375,
+      "route": "/oportunidades",
+      "passed": true
+    },
+    {
+      "width": 375,
+      "route": "/entrar",
+      "passed": true
+    },
+    {
+      "width": 375,
+      "route": "/cadastro",
+      "passed": true
+    },
+    {
+      "width": 375,
+      "route": "/app",
+      "passed": true
+    },
+    {
+      "width": 375,
+      "route": "/app/carteira",
+      "passed": true
+    },
+    {
+      "width": 375,
+      "route": "/app/conta-digital",
+      "passed": true
+    },
+    {
+      "width": 375,
+      "route": "/app/marketplace",
+      "passed": true
+    },
+    {
+      "width": 375,
+      "route": "/app/informe",
+      "passed": true
+    },
+    {
+      "width": 375,
+      "route": "/app/oferta/reserva",
+      "passed": true
+    },
+    {
+      "width": 768,
+      "route": "/",
+      "passed": true
+    },
+    {
+      "width": 768,
+      "route": "/oportunidades",
+      "passed": true
+    },
+    {
+      "width": 768,
+      "route": "/entrar",
+      "passed": true
+    },
+    {
+      "width": 768,
+      "route": "/cadastro",
+      "passed": true
+    },
+    {
+      "width": 768,
+      "route": "/app",
+      "passed": true
+    },
+    {
+      "width": 768,
+      "route": "/app/carteira",
+      "passed": true
+    },
+    {
+      "width": 768,
+      "route": "/app/conta-digital",
+      "passed": true
+    },
+    {
+      "width": 768,
+      "route": "/app/marketplace",
+      "passed": true
+    },
+    {
+      "width": 768,
+      "route": "/app/informe",
+      "passed": true
+    },
+    {
+      "width": 768,
+      "route": "/app/oferta/reserva",
+      "passed": true
+    },
+    {
+      "width": 1024,
+      "route": "/",
+      "passed": true
+    },
+    {
+      "width": 1024,
+      "route": "/oportunidades",
+      "passed": true
+    },
+    {
+      "width": 1024,
+      "route": "/entrar",
+      "passed": true
+    },
+    {
+      "width": 1024,
+      "route": "/cadastro",
+      "passed": true
+    },
+    {
+      "width": 1024,
+      "route": "/app",
+      "passed": true
+    },
+    {
+      "width": 1024,
+      "route": "/app/carteira",
+      "passed": true
+    },
+    {
+      "width": 1024,
+      "route": "/app/conta-digital",
+      "passed": true
+    },
+    {
+      "width": 1024,
+      "route": "/app/marketplace",
+      "passed": true
+    },
+    {
+      "width": 1024,
+      "route": "/app/informe",
+      "passed": true
+    },
+    {
+      "width": 1024,
+      "route": "/app/oferta/reserva",
+      "passed": true
+    },
+    {
+      "width": 1440,
+      "route": "/",
+      "passed": true
+    },
+    {
+      "width": 1440,
+      "route": "/oportunidades",
+      "passed": true
+    },
+    {
+      "width": 1440,
+      "route": "/entrar",
+      "passed": true
+    },
+    {
+      "width": 1440,
+      "route": "/cadastro",
+      "passed": true
+    },
+    {
+      "width": 1440,
+      "route": "/app",
+      "passed": true
+    },
+    {
+      "width": 1440,
+      "route": "/app/carteira",
+      "passed": true
+    },
+    {
+      "width": 1440,
+      "route": "/app/conta-digital",
+      "passed": true
+    },
+    {
+      "width": 1440,
+      "route": "/app/marketplace",
+      "passed": true
+    },
+    {
+      "width": 1440,
+      "route": "/app/informe",
+      "passed": true
+    },
+    {
+      "width": 1440,
+      "route": "/app/oferta/reserva",
+      "passed": true
+    },
+    {
+      "case": "Search, categories, empty, favorites and persistence",
+      "passed": true
+    },
+    {
+      "case": "Observed simple-interest simulator defaults, three periods, upper and lower slider boundaries",
+      "passed": true
+    },
+    {
+      "case": "Registration with password mismatch and completion",
+      "passed": true
+    },
+    {
+      "case": "Offer tabs, keyboard, dialog focus return and investment simulation",
+      "passed": true
+    },
+    {
+      "case": "Independent balance privacy and no-transfer wallet demo",
+      "passed": true
+    },
+    {
+      "case": "Statement CSV and direction filters",
+      "passed": true
+    },
+    {
+      "case": "Banking explanatory onboarding",
+      "passed": true
+    },
+    {
+      "case": "Secondary-market simulated checkout",
+      "passed": true
+    },
+    {
+      "case": "Two-panel OTC quote calculation",
+      "passed": true
+    },
+    {
+      "case": "FAQ search and disclosure",
+      "passed": true
+    },
+    {
+      "case": "Contact validates without transmitting",
+      "passed": true
+    },
+    {
+      "case": "Mobile menu and Escape",
+      "passed": true
+    }
+  ],
+  "errors": [],
+  "externalRequests": [],
+  "environmentInjection": {
+    "origin": "http://gc.kis.v2.scr.kaspersky-labs.com",
+    "count": 91,
+    "note": "Browser security software injected requests; not referenced by application source. Security software was not modified."
+  }
+}

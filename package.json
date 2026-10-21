@@ -1,0 +1,13 @@
+{
+  "name": "tokenhub-experience",
+  "version": "0.5.0",
+  "private": true,
+  "scripts": {
+    "start": "node server.cjs",
+    "check": "node --check dist/app.js && node --check dist/data.js && node --check dist/simulator.js && node --check dist/motion.js && node --check dist/scene.js && node --check server.cjs && node --check dist/photos.js && node --check dist/wallet-details.js && node --check dist/otc.js && node --check dist/official.js && node --check dist/documents.js",
+    "test": "node research/qa.cjs",
+    "test:motion": "node research/qa-motion.cjs",
+    "test:v3": "node research/qa-v3.cjs",
+    "test:official": "node research/qa-official.cjs"
+  }
+}
