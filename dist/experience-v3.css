@@ -57,3 +57,9 @@ p,li,dd,blockquote,figcaption,.lead,.footnote{ text-wrap:pretty; }
 }
 
 @media(max-width:760px){.editorial-break{display:none}}
+
+/* Separate navigation, institutional data and the legal footer. */
+.site-footer .footer-grid{padding-bottom:48px}
+.site-footer .footer-institutional{padding-top:36px;padding-bottom:36px}
+.site-footer .footer-bottom{margin-top:24px;padding-top:28px}
+@media(max-width:760px){.site-footer .footer-grid{padding-bottom:32px;row-gap:36px}.site-footer .footer-institutional{padding-top:28px;padding-bottom:28px}.site-footer .footer-bottom{margin-top:20px}}
