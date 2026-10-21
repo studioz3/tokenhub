@@ -1,4 +1,4 @@
-# TokenHub — pacote completo para continuar em outro chat
+# TokenHub
 
 Versão exportada: 21/10/2026, após a correção do caminho de navegação em uma linha. Esta pasta é independente do projeto Minha Corrida.
 
