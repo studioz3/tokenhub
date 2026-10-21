@@ -77,3 +77,6 @@ p,li,dd,blockquote,figcaption,.lead,.footnote{ text-wrap:pretty; }
 .page-hero-art .breadcrumbs{color:#b8c7cf}
 .page-hero-art .breadcrumbs a{color:#a2e6f7}
 @media(max-width:760px){.page-hero-art::before{background-position:68% center;background-image:linear-gradient(90deg,rgba(0,0,0,.94),rgba(0,0,0,.72) 65%,rgba(0,0,0,.48)),var(--page-art)}.page-hero-art h1{font-size:clamp(32px,7vw,46px)}}
+
+/* Black site navigation on desktop and mobile. */
+.site-header,.site-header .site-nav{background:#000}
