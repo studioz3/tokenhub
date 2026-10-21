@@ -37,3 +37,9 @@
 .hero-photo .hero-copy,.hero-photo h1{max-width:840px}
 .hero-title-line{display:block;white-space:nowrap}
 @media(max-width:1000px){.hero-title-line{white-space:normal}.hero-photo .hero-copy{max-width:100%}}
+
+/* Editorial wrapping: avoid short orphaned last lines without fixed spaces. */
+h1,h2,h3,h4,h5,h6{ text-wrap:balance; }
+p,li,dd,blockquote,figcaption,.lead,.footnote{ text-wrap:pretty; }
+/* Preserve the approved desktop hero composition; balance its mobile lines. */
+.hero-title-line{ text-wrap:balance; }
