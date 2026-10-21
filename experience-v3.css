@@ -43,3 +43,15 @@ h1,h2,h3,h4,h5,h6{ text-wrap:balance; }
 p,li,dd,blockquote,figcaption,.lead,.footnote{ text-wrap:pretty; }
 /* Preserve the approved desktop hero composition; balance its mobile lines. */
 .hero-title-line{ text-wrap:balance; }
+
+/* Black footer and black fade for the land hero. */
+.site-footer{background:#000}
+.hero-photo{background:#000}
+.hero-photo::before{
+ background-image:linear-gradient(to right,#000 0%,rgba(0,0,0,.92) 24%,rgba(0,0,0,.5) 46%,rgba(0,0,0,.12) 68%,transparent 100%),url("assets/photos/hero-terrenos-v2.webp");
+ -webkit-mask-image:none;mask-image:none;
+}
+.hero-photo .btn-light{background:rgba(0,0,0,.55)}
+@media(max-width:760px){
+ .hero-photo::before{background-image:linear-gradient(to right,rgba(0,0,0,.94),rgba(0,0,0,.68) 60%,rgba(0,0,0,.42)),url("assets/photos/hero-terrenos-v2.webp")}
+}
