@@ -32,3 +32,8 @@
 /* Land tokenization art carries its own clear space for the title. */
 .hero-photo::before{background-image:linear-gradient(90deg,rgba(8,54,80,.18),transparent 75%),url("assets/photos/hero-terrenos-v2.webp");background-position:center right;-webkit-mask-image:linear-gradient(to right,transparent 0%,#000 65%);mask-image:linear-gradient(to right,transparent 0%,#000 65%)}
 @media(max-width:760px){.hero-photo::before{background-image:linear-gradient(rgba(8,54,80,.58),rgba(8,54,80,.78)),url("assets/photos/hero-terrenos-v2.webp");background-position:72% center}}
+
+/* Keep the desktop headline in the two lines approved in the reference. */
+.hero-photo .hero-copy,.hero-photo h1{max-width:840px}
+.hero-title-line{display:block;white-space:nowrap}
+@media(max-width:1000px){.hero-title-line{white-space:normal}.hero-photo .hero-copy{max-width:100%}}
