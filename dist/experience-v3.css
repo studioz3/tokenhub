@@ -88,3 +88,28 @@ p,li,dd,blockquote,figcaption,.lead,.footnote{ text-wrap:pretty; }
  .photo-auth .auth-panel-copy{padding-bottom:100px;min-height:490px}
  .photo-auth .auth-panel-copy .brand-symbol{width:230px;height:230px;right:24px;bottom:24px}
 }
+
+/* Access is a visible outlined action, including on small phones. */
+.site-header .nav-login{display:inline-flex;color:#fff;border:1px solid #ffffff75;background:transparent;min-height:46px;padding:12px 20px}
+.site-header .nav-login:hover{background:#ffffff16;border-color:#fff}
+.auth,.auth-main{min-height:100vh}
+.mobile-banner-art{display:none}
+@media(max-width:760px){
+ .site-header .nav-login{display:inline-flex}
+ .hero-photo::before,.page-hero-art::before{display:none}
+ .hero-photo .hero-grid{min-height:0}
+ .hero-photo .hero-copy{padding-top:44px;padding-bottom:16px}
+ .hero-photo .hero-foot{margin-top:26px}
+ .page-hero-art{padding-bottom:0}
+ .mobile-banner-art{display:block;position:relative;background:#000;line-height:0;margin-top:8px;overflow:hidden}
+ .mobile-banner-art img{display:block;width:100%;height:auto;aspect-ratio:4/3;object-fit:contain;-webkit-mask-image:linear-gradient(to bottom,transparent,#000 18%);mask-image:linear-gradient(to bottom,transparent,#000 18%)}
+ .site-header .nav-actions{gap:6px}
+ .site-header .nav-actions .btn{padding:10px 11px;min-height:40px}
+}
+@media(max-width:400px){
+ .site-header .logo{width:96px}
+ .site-header .nav-inner{gap:8px}
+ .site-header .nav-actions{gap:5px}
+ .site-header .nav-actions .btn{font-size:10px;padding:9px 8px;min-height:40px}
+ .site-header .menu-toggle{width:32px;min-width:32px}
+}
