@@ -12,3 +12,15 @@
 .company-identity{display:grid;gap:8px;font-size:13px;line-height:1.75;overflow-wrap:anywhere}.company-identity address{font-style:normal;color:var(--muted)}.footer-institutional{border-top:1px solid #ffffff20;padding:26px 0}.site-footer .company-identity{color:#e9f4fa;font-size:12px}.site-footer .company-identity address{color:#b5cad7}.site-footer .company-identity a{color:#70cfea}.official-service{display:flex;flex-direction:column;gap:18px}.official-service>.icon{width:32px;height:32px;color:var(--cyan-dark)}.official-service .arrow-link{margin-top:auto}.official-services .footnote{max-width:900px}.footer-bottom span{white-space:normal;max-width:260px}
 @media(max-width:760px){.about-benefits{grid-template-columns:minmax(0,1fr)}.about-benefits .panel{min-width:0}}
 .page-hero .breadcrumbs{min-width:0;white-space:nowrap}.page-hero .breadcrumbs>a,.page-hero .breadcrumbs>span:not(:last-child){flex-shrink:0}.page-hero .breadcrumb-current{min-width:0;overflow:hidden;text-overflow:ellipsis}
+
+
+/* Home photograph: 100% visible on the right, fading to 0% on the left. */
+.hero-photo{isolation:isolate;background:var(--navy)}
+.hero-photo::before{content:"";position:absolute;inset:0;z-index:-1;pointer-events:none;background:linear-gradient(90deg,rgba(8,54,80,.32),rgba(8,54,80,.08)),url("assets/photos/hero-imobiliario.webp") center right/cover no-repeat;-webkit-mask-image:linear-gradient(to right,transparent 0%,transparent 24%,#000 100%);mask-image:linear-gradient(to right,transparent 0%,transparent 24%,#000 100%)}
+.hero-photo .hero-grid{grid-template-columns:1fr}
+.hero-photo .hero-copy{max-width:660px}
+.hero-photo h1,.hero-photo .hero-copy>p{text-shadow:0 2px 18px rgba(0,17,30,.4)}
+.hero-photo .hero-copy>p{color:#d1e2ec}
+.hero-photo .hero-foot{color:#c2d8e4}
+.hero-photo .btn-light{background:rgba(8,54,80,.65)}
+@media(max-width:760px){.hero-photo::before{background-position:62% center;background-image:linear-gradient(rgba(8,54,80,.55),rgba(8,54,80,.75)),url("assets/photos/hero-imobiliario.webp");-webkit-mask-image:linear-gradient(to right,transparent,#000);mask-image:linear-gradient(to right,transparent,#000)}.hero-photo .hero-copy{max-width:100%}}
