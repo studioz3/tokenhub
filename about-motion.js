@@ -4,6 +4,7 @@ export function mountAboutMotion(root){
  const media=matchMedia('(prefers-reduced-motion: reduce)');
  let context,lenis,tick,discoveryTrigger,catalogContext;let selected=0;const controller=new AbortController();
  root.querySelector('.about-vision-link')?.addEventListener('click',event=>{event.preventDefault();const target=root.querySelector('#tokenhub-visao');if(lenis)lenis.scrollTo(target,{offset:-90});else target.scrollIntoView({behavior:media.matches?'instant':'smooth'});},{signal:controller.signal});
+ root.querySelectorAll('[data-up-jump]').forEach(link=>link.addEventListener('click',e=>{e.preventDefault();const target=root.querySelector('#'+link.dataset.upJump);if(lenis)lenis.scrollTo(target,{offset:-100});else target?.scrollIntoView({behavior:media.matches?'instant':'smooth'});},{signal:controller.signal}));
  const tabs=[...root.querySelectorAll('[data-discovery]')];
  const select=(index,focus=false)=>{if(index===selected){if(focus)tabs[index]?.focus();return;}selected=index;tabs.forEach((tab,i)=>{tab.setAttribute('aria-selected',String(i===index));tab.tabIndex=i===index?0:-1;const panel=root.querySelector(`#discovery-panel-${i}`);if(panel)panel.hidden=i!==index;});if(focus)tabs[index]?.focus();const panel=root.querySelector(`#discovery-panel-${index} .discovery-preview`);if(panel&&!media.matches)window.gsap?.fromTo(panel,{y:14,opacity:0},{y:0,opacity:1,duration:.35,clearProps:'all'});};
  tabs.forEach((tab,i)=>{tab.addEventListener('click',()=>jumpDiscovery(i),{signal:controller.signal});tab.addEventListener('keydown',e=>{let next;if(e.key==='ArrowDown'||e.key==='ArrowRight')next=(i+1)%tabs.length;if(e.key==='ArrowUp'||e.key==='ArrowLeft')next=(i+tabs.length-1)%tabs.length;if(e.key==='Home')next=0;if(e.key==='End')next=tabs.length-1;if(next!==undefined){e.preventDefault();jumpDiscovery(next,true);}},{signal:controller.signal});});
@@ -37,9 +38,9 @@ export function mountAboutMotion(root){
   root.querySelectorAll('[data-about-reveal]').forEach(element=>gsap.from(element,{y:36,opacity:0,duration:.85,ease:'power3.out',scrollTrigger:{trigger:element,start:'top 92%',once:true},clearProps:'all'}));
   const isAbout=!!root.querySelector('.about-hero');
   if(!isAbout){
-   const hero=root.querySelector('.page-hero,.hero');
+   const hero=root.querySelector('.page-hero,.hero,.up-hero');
    if(hero)gsap.from(hero.querySelectorAll('.eyebrow,h1,p'),{y:24,opacity:0,duration:.85,stagger:.1,clearProps:'all'});
-   root.querySelectorAll('#main > section:not(.page-hero):not(.hero) > .container > h2, .how-step-body, .question-bubble').forEach(element=>gsap.from(element,{y:28,opacity:0,duration:.7,clearProps:'all',scrollTrigger:{trigger:element,start:'top 93%',once:true}}));
+   root.querySelectorAll('#main > section:not(.page-hero):not(.hero) > .container > h2, .how-step-body, .question-bubble, .up-section-heading, .up-gallery-tile, .up-amenity-grid figure').forEach(element=>gsap.from(element,{y:28,opacity:0,duration:.7,clearProps:'all',scrollTrigger:{trigger:element,start:'top 93%',once:true}}));
    if(tabs.length)discoveryTrigger=ScrollTrigger.create({id:'registration-steps',trigger:'.discovery-tabs',start:'top bottom',end:'bottom top',onUpdate:syncDiscovery,onRefresh:syncDiscovery,invalidateOnRefresh:true});
    if(stepNodes.length)ScrollTrigger.create({trigger:'.how-step-list',start:'top bottom',end:'bottom top',onUpdate:syncSteps,onRefresh:syncSteps});
    if(matchMedia('(min-width:761px) and (pointer:fine)').matches){
@@ -56,7 +57,7 @@ export function mountAboutMotion(root){
  };
  // Animate native details without hiding the answer before the closing transition ends.
  const bubbleAnimations=new Map();
- root.querySelectorAll('.question-bubble').forEach(bubble=>{
+ root.querySelectorAll('.question-bubble, .up-section-heading, .up-gallery-tile, .up-amenity-grid figure').forEach(bubble=>{
   const summary=bubble.querySelector('summary'),answer=bubble.querySelector('.question-answer');
   if(!summary||!answer)return;
   let expanded=bubble.open;
