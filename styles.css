@@ -76,3 +76,9 @@
 .home-opportunities .home-offers-action .btn{min-width:205px;justify-content:center}
 .home-opportunities .footnote{margin-top:23px}
 @media(max-width:760px){.home-opportunities .home-offers-action{margin-top:26px}}
+
+/* Numeração editorial dos benefícios ampliada 3x */
+.token-benefits .token-benefit-index{display:flex;align-items:baseline;flex-wrap:wrap;gap:11px;font-size:10px;line-height:1.2;letter-spacing:.12em}
+.token-benefits .token-benefit-index strong{font-size:30px;line-height:1;font-weight:800;letter-spacing:-.055em;color:#0b3c56}
+.token-benefits .token-benefit-index>span{font-size:10px;font-weight:800;letter-spacing:.12em;color:#65808d}
+@media(max-width:650px){.token-benefits .token-benefit-index strong{font-size:30px}}
