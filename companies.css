@@ -145,3 +145,11 @@
 /* Give each benefit a full reading interval before the next scroll activation. */
 .biz-page .biz-benefit-tabs>button{min-height:clamp(620px,80vh,920px)}
 @media(max-width:760px){.biz-page .biz-benefit-tabs>button{min-height:clamp(420px,65svh,650px)}}
+
+/* Point directly at the first checklist card, independently of its instruction. */
+.biz-check-guide{display:block}
+.biz-checklist{position:relative}
+.biz-checklist>.biz-check-hand{position:absolute;top:-50px;right:18px;width:58px;height:58px;z-index:2;pointer-events:none;animation:biz-hand-point 1.8s ease-in-out infinite;filter:drop-shadow(0 3px 3px #07364e12)}
+@keyframes biz-hand-point{0%,100%{transform:translateY(-7px)}50%{transform:translateY(4px)}}
+@media(max-width:760px){.biz-readiness-workspace{margin-top:48px}.biz-checklist>.biz-check-hand{width:48px;height:48px;top:-41px;right:14px}}
+@media(prefers-reduced-motion:reduce){.biz-checklist>.biz-check-hand{animation:none}}
