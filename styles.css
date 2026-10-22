@@ -82,3 +82,8 @@
 .token-benefits .token-benefit-index strong{font-size:30px;line-height:1;font-weight:800;letter-spacing:-.055em;color:#0b3c56}
 .token-benefits .token-benefit-index>span{font-size:10px;font-weight:800;letter-spacing:.12em;color:#65808d}
 @media(max-width:650px){.token-benefits .token-benefit-index strong{font-size:30px}}
+
+/* CTA de oportunidades: azul institucional com texto branco */
+.home-opportunities .home-offers-action .btn.btn-primary{background:var(--brand-blue);border-color:var(--brand-blue);color:#fff}
+.home-opportunities .home-offers-action .btn.btn-primary:hover{background:var(--cyan-dark);border-color:var(--cyan-dark);color:#fff}
+.home-opportunities .home-offers-action .btn.btn-primary:focus-visible{outline:3px solid var(--cyan-dark);outline-offset:4px}
