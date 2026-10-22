@@ -17,3 +17,7 @@ Banner substituído por assets/photos/about-hero-wide-v3.webp, 1920 × 640 px, e
 Órbitas convertidas em SVG. Um modelo geométrico único atualiza a rotação das elipses e as coordenadas dos pontos e rótulos no mesmo quadro de animação. Textos permanecem na horizontal. Percursos e posições revisados para evitar colisões entre rótulos. Estado estático preservado com movimento reduzido e sem as bibliotecas.
 
 Validação da revisão: banner de 0 a 1920 px no desktop; arquivo com dimensões 1920 × 640; pontos sobre as elipses e rótulos na horizontal em três fases de rolagem. Responsividade, carregamento de imagens, ausência de erros e limpeza de efeitos ao navegar novamente verificadas em seis larguras. Capturas desktop e mobile revisadas; título mobile sem cortes.
+
+## Fotografia fornecida pelo usuário
+
+Topo substituído por assets/photos/about-hero-real-v5.webp (1920 × 640), editado a partir de 45420.jpg e do símbolo oficial anexado. Edição pela ferramenta integrada de imagens, com pedido de preservar pessoas, rostos, expressões, roupas e iluminação; aplicar pequenos símbolos bordados nas roupas, estender o quadro e integrar degradê preto suave à esquerda. Prompt: composição fotográfica fiel à imagem original, pessoas e tablet à direita, sem recriar ou estilizar rostos, sem textos, emblema oficial azul-marinho na blusa cinza e ciano na camisa azul. Foto anterior do topo deixa de ser utilizada; demais seções mantidas.
