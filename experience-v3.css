@@ -285,3 +285,6 @@ html.up-gallery-open{overflow:hidden}dialog.up-gallery-dialog{width:min(1320px,c
 .page-hero-opportunities h1{font-size:clamp(38px,3.8vw,57px);line-height:1.12;max-width:800px}.page-hero-opportunities h1 em{font-style:normal;color:#67d8f0}
 @media(max-width:1000px) and (min-width:761px){.page-hero-opportunities h1{font-size:38px}}
 @media(max-width:760px){.page-hero-opportunities h1{font-size:clamp(35px,8vw,49px)}}
+
+.page-hero h1 em.page-title-accent{color:var(--cyan);font-style:normal;font-weight:800}
+.page-hero-opportunities h1{max-width:1100px}
