@@ -288,3 +288,6 @@ html.up-gallery-open{overflow:hidden}dialog.up-gallery-dialog{width:min(1320px,c
 
 .page-hero h1 em.page-title-accent{color:var(--cyan);font-style:normal;font-weight:800}
 .page-hero-opportunities h1{max-width:1100px}
+
+/* Match About hero accent to the other page banners. */
+.about-hero h1 em{color:#00a2d4}
