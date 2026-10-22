@@ -120,3 +120,7 @@ p,li,dd,blockquote,figcaption,.lead,.footnote{ text-wrap:pretty; }
 
 /* ExtraBold headings throughout the site and platform panels. */
 h1,h2,h3,h4,h5,h6,.hero h1,.hero h1 em,.hero-title-line{font-weight:800}
+
+/* Larger, more legible numbered process steps. */
+.process-item::before{font-size:32px;line-height:1.15;padding-top:0;font-variant-numeric:lining-nums tabular-nums}
+@media(max-width:760px){.process-item::before{font-size:28px}}
