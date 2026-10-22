@@ -25,3 +25,9 @@ Topo substituído por assets/photos/about-hero-real-v5.webp (1920 × 640), edita
 ## Fotografia real da equipe
 
 Imagem interna substituída por assets/photos/about-team-real-v6.webp, editada a partir de 548890.jpg. Prompt da ferramenta integrada: preservar as três pessoas da fotografia, identidades, expressões, poses, mãos, dispositivos, ambiente e luz; modificar apenas as peças superiores para polos de piquê azul-marinho #083650 e aplicar bordado pequeno em ciano #00A2D4 usando o símbolo oficial fornecido, incluindo o aro espesso e as extensões diagonais, sem substituí-lo por círculo genérico. Não adicionar degradê à fotografia; a legenda e sua proteção de contraste continuam no CSS. Enquadramento mobile ajustado para mostrar os três rostos.
+
+## Revisão de polos e aplicação dos bordados
+
+Topo: assets/photos/about-hero-polos-v7.webp, 1920 × 640. Edição integrada com banner aprovado como alvo e fotografia original como referência de identidades. Prompt: modificar somente as peças superiores para polos de piquê azul-marinho, símbolo oficial pequeno bordado em ciano, relevo de linha e iluminação coerente; preservar pessoas, textura fotográfica, cenário, enquadramento e degradê aprovados.
+
+Equipe: assets/photos/about-team-embroidery-v7.webp. Prompt de retoque localizado: remover completamente a marca visível na mulher da extrema esquerda e restaurar o tecido; retirar a marca inteira anterior da mulher ao centro e reposicionar a aplicação no peito esquerdo anatômico, com metade oculta pela silhueta do homem em primeiro plano; reduzir discretamente a marca do homem e conferir acabamento bordado; manter todos os demais elementos da fotografia. Os arquivos foram otimizados em WebP com qualidade 94.
