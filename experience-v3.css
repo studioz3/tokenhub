@@ -325,3 +325,12 @@ html.up-gallery-open{overflow:hidden}dialog.up-gallery-dialog{width:min(1320px,c
 @media(max-width:480px){.catalog-card .catalog-funding{padding:18px}.catalog-card .catalog-funding small{font-size:12px}}
 
 .offer-image-link{display:block;width:100%;height:100%;overflow:hidden}.offer-image-link:focus-visible{outline:3px solid var(--brand-blue);outline-offset:-4px}.offer-art .art-meta{pointer-events:none}.offer-art .art-meta button{pointer-events:auto}
+
+/* An edge-to-edge moving landscape, with editorial content above the film. */
+.up-video{position:relative;isolation:isolate;height:100svh;min-height:600px;max-height:1200px;overflow:hidden;padding:0;background:#031c2b}
+.up-video video{position:absolute;inset:0;width:100%;height:100%;aspect-ratio:auto;object-fit:cover;border-radius:0}
+.up-video-shade{position:absolute;inset:0;pointer-events:none;background:linear-gradient(180deg,#00152288,transparent 65%),linear-gradient(0deg,#001522d9,transparent 40%),linear-gradient(90deg,#00152266,transparent 70%)}
+.up-video-overlay{position:relative;z-index:1;width:100%;height:100%;display:flex;flex-direction:column;justify-content:space-between;padding-top:clamp(80px,12vh,150px);padding-bottom:38px;pointer-events:none}
+.up-video-heading{max-width:900px}.up-video .up-video-heading h2{font-size:clamp(48px,6.5vw,100px);line-height:1.03;letter-spacing:-.05em;margin:0;text-shadow:0 2px 30px #00152233}
+.up-video-footer{display:flex;align-items:center;justify-content:space-between;gap:24px}.up-video-footer a,.up-video-controls{pointer-events:auto}.up-video .up-source{color:#e1edf2;font-size:11px;margin:0}.up-video-controls{display:flex;gap:10px}.up-video-controls button{border:1px solid #ffffff66;border-radius:30px;background:#06253688;backdrop-filter:blur(12px);color:white;padding:12px 20px;min-height:46px;font-size:12px}.up-video-controls button:hover{background:#07364e}.up-video-controls button:focus-visible{outline-color:var(--brand-blue)}
+@media(max-width:760px){.up-video{min-height:560px;max-height:950px}.up-video-overlay{padding-top:90px;padding-bottom:28px}.up-video-footer{align-items:flex-start;flex-direction:column;gap:22px}.up-video .up-video-heading h2{font-size:clamp(46px,10vw,72px)}}
