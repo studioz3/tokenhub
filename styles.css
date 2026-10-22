@@ -105,3 +105,22 @@
 .official-services-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:24px}
 .official-services-grid>.official-service{min-width:0;height:100%}
 @media(max-width:760px){.official-services-grid{grid-template-columns:1fr;gap:18px}}
+
+/* Home: destaque único para Token Academy */
+.official-academy-section{background:#fff}
+.official-academy-heading{max-width:800px;margin:0 auto 42px;text-align:center}
+.official-academy-heading .eyebrow{display:block;color:var(--cyan-dark);margin-bottom:16px}
+.official-academy-heading h2{font-size:clamp(31px,3.25vw,48px);letter-spacing:-.04em;line-height:1.15;color:var(--ink)}
+.official-academy-heading h2 em{font-style:normal;color:var(--brand-blue)}
+.official-academy-heading p{max-width:650px;margin:18px auto 0;font-size:15px;line-height:1.8}
+.official-academy-feature{display:grid;grid-template-columns:86px minmax(0,1fr) auto;align-items:center;gap:27px;padding:38px 42px;border:1px solid var(--line);border-radius:12px;background:#f7fafb}
+.official-academy-symbol{color:var(--brand-blue);align-self:start;display:flex;align-items:flex-start}
+.official-academy-symbol .icon,.official-academy-symbol svg{width:65px;height:65px}
+.official-academy-copy{min-width:0}
+.official-academy-label{color:var(--cyan-dark);font-size:10px;font-weight:800;letter-spacing:.13em}
+.official-academy-copy h3{font-size:clamp(24px,2.3vw,32px);margin-top:8px}
+.official-academy-copy p{font-size:14px;line-height:1.8;max-width:610px;margin-top:12px}
+.official-academy-cta{color:#fff!important;white-space:nowrap;justify-self:end}
+.official-academy-note{text-align:center;margin:20px auto 0;max-width:800px}
+@media(max-width:900px){.official-academy-feature{grid-template-columns:70px minmax(0,1fr);gap:20px;padding:30px}.official-academy-symbol .icon,.official-academy-symbol svg{width:56px;height:56px}.official-academy-cta{grid-column:2;justify-self:start}}
+@media(max-width:600px){.official-academy-heading{margin-bottom:28px}.official-academy-heading p{font-size:13px}.official-academy-feature{grid-template-columns:1fr;gap:14px;padding:25px 23px}.official-academy-symbol .icon,.official-academy-symbol svg{width:52px;height:52px}.official-academy-copy p{font-size:13px}.official-academy-cta{grid-column:1;justify-self:stretch;margin-top:9px}.official-academy-note{font-size:11px}}
