@@ -240,3 +240,7 @@ html.about-smooth{scroll-behavior:auto}html.lenis,html.lenis body{height:auto}.l
 @media(max-width:1000px) and (min-width:761px){.discovery-tab{gap:16px;padding:35px 12px}.discovery-tab>span:first-child{font-size:68px}.discovery-panels{height:500px}}
 @media(max-width:760px){.discovery-layout{display:flex;flex-direction:column;gap:25px}.discovery-panels{order:-1;top:90px;z-index:3;width:100%;height:310px;min-height:310px;box-shadow:0 12px 30px #062d431a}.discovery-panel{padding:18px}.discovery-preview{padding:18px}.discovery-preview>.icon{width:26px;height:26px;margin-bottom:10px}.discovery-preview h3{font-size:23px;margin-top:8px}.preview-lines{margin:12px 0;gap:6px}.preview-lines i{height:4px}.discovery-preview p{font-size:13px;line-height:1.5}.discovery-count{margin-top:12px;font-size:9px}.discovery-controls{padding:9px 18px;font-size:11px}.discovery-tabs{width:100%}.discovery-tab{min-height:240px;padding:30px 14px;gap:18px}.discovery-tab>span:first-child{font-size:68px}.discovery-watermark{font-size:180px}.how-landscape img{object-position:65% center}}
 @media(max-width:360px){.discovery-tab>span:first-child{font-size:58px}.discovery-tab{gap:14px}.discovery-preview h3{font-size:21px}}
+
+/* Match the page's editorial heading scale without a long isolated word. */
+.how-process h2{font-size:clamp(40px,4.8vw,72px);line-height:1.09;letter-spacing:-.045em}.how-process h2 span{white-space:normal}
+@media(max-width:760px){.how-process h2{font-size:clamp(40px,4.8vw,72px)}}
