@@ -214,3 +214,9 @@ html.about-smooth{scroll-behavior:auto}html.lenis,html.lenis body{height:auto}.l
 @media(prefers-reduced-motion:reduce){.how-step-number,.question-plus,.discovery-tab>span:first-child{transition:none}}
 .how-step-body,.discovery-panels,.discovery-panel,.discovery-preview,.discovery-tab>span:nth-child(2){min-width:0}.how-step h3,.discovery-preview h3{overflow-wrap:anywhere}.discovery-watermark{pointer-events:none}.discovery-preview .icon{flex-shrink:0}
 @media(max-width:360px){.how-step{grid-template-columns:58px 1fr;gap:14px}.how-step-number{font-size:55px}.how-step h3{font-size:23px}.discovery-panel{padding:18px}.discovery-preview{padding:21px}.discovery-preview h3{font-size:25px}.question-bubble summary{font-size:18px;gap:10px}}
+
+/* Keep the preposition with its phrase and balance the reading columns. */
+.how-process>.container{grid-template-columns:1fr 1.15fr;gap:60px}.how-process-heading{min-width:0}.how-process h2{font-size:clamp(25px,2.65vw,42px);line-height:1.22;letter-spacing:-.045em}.how-process h2 span{white-space:nowrap}.how-step{grid-template-columns:105px 1fr;gap:25px}.how-step-number{font-size:90px}
+@media(max-width:1000px) and (min-width:761px){.how-process>.container{gap:30px}.how-step{grid-template-columns:75px 1fr;gap:18px}.how-step-number{font-size:68px}.how-step h3{font-size:25px}}
+@media(max-width:760px){.how-process>.container{display:block}.how-process h2{font-size:clamp(25px,6.5vw,40px)}.how-step{grid-template-columns:75px 1fr;gap:18px}.how-step-number{font-size:68px}}
+@media(max-width:360px){.how-step{grid-template-columns:58px 1fr;gap:14px}.how-step-number{font-size:55px}}

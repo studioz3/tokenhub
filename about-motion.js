@@ -11,6 +11,10 @@ export function mountAboutMotion(root){
  root.querySelectorAll('[data-step-jump]').forEach(link=>link.addEventListener('click',e=>{e.preventDefault();const target=root.querySelector(`#how-step-${link.dataset.stepJump}`);if(lenis)lenis.scrollTo(target,{offset:-115});else target?.scrollIntoView({behavior:media.matches?'instant':'smooth'});},{signal:controller.signal}));
  const stepNodes=[...root.querySelectorAll('.how-step')],stepLinks=[...root.querySelectorAll('[data-step-jump]')];
  const activate=index=>{stepNodes.forEach((node,i)=>node.classList.toggle('is-active',i===index));stepLinks.forEach((link,i)=>{if(i===index)link.setAttribute('aria-current','step');else link.removeAttribute('aria-current');});};activate(0);
+ // Derive the active step from current geometry, including reverse scroll and large jumps.
+ const syncSteps=()=>{if(!stepNodes.length)return;const readingLine=innerHeight*.5;let index=0;stepNodes.forEach((node,i)=>{if(node.getBoundingClientRect().top<=readingLine)index=i;});activate(index);const first=stepNodes[0].getBoundingClientRect(),last=stepNodes.at(-1).getBoundingClientRect();const progress=Math.min(1,Math.max(0,(readingLine-first.top)/(last.top-first.top||1)));const bar=root.querySelector('.how-progress > span');if(bar)bar.style.transform=`scaleX(${.2+.8*progress})`;};
+ let stepFrame;const queueSteps=()=>{if(stepFrame)return;stepFrame=requestAnimationFrame(()=>{stepFrame=null;syncSteps();});};
+ window.addEventListener('scroll',queueSteps,{passive:true,signal:controller.signal});window.addEventListener('resize',queueSteps,{signal:controller.signal});syncSteps();
  // One geometry model drives each ellipse, its markers and its upright labels.
  const orbit=root.querySelector('.about-orbit'),orbitState={progress:0};
  const tracks={a:{rx:185,ry:112,angle:-28,travel:60},b:{rx:210,ry:130,angle:45,travel:-35}};
@@ -31,8 +35,7 @@ export function mountAboutMotion(root){
    const hero=root.querySelector('.page-hero,.hero');
    if(hero)gsap.from(hero.querySelectorAll('.eyebrow,h1,p'),{y:24,opacity:0,duration:.85,stagger:.1,clearProps:'all'});
    root.querySelectorAll('#main > section:not(.page-hero):not(.hero) > .container > h2, .how-step-body, .question-bubble').forEach(element=>gsap.from(element,{y:28,opacity:0,duration:.7,clearProps:'all',scrollTrigger:{trigger:element,start:'top 93%',once:true}}));
-   stepNodes.forEach((node,i)=>ScrollTrigger.create({trigger:node,start:'top 65%',end:'bottom 65%',onEnter:()=>activate(i),onEnterBack:()=>activate(i)}));
-   if(stepNodes.length)gsap.fromTo('.how-progress > span',{scaleX:.2},{scaleX:1,ease:'none',scrollTrigger:{trigger:'.how-step-list',start:'top 65%',end:'bottom 65%',scrub:true}});
+   if(stepNodes.length)ScrollTrigger.create({trigger:'.how-step-list',start:'top bottom',end:'bottom top',onUpdate:syncSteps,onRefresh:syncSteps});
    if(matchMedia('(min-width:761px) and (pointer:fine)').matches){
     root.querySelectorAll('.page-hero-art').forEach(element=>gsap.fromTo(element,{'--hero-shift':'-15px'},{'--hero-shift':'18px',ease:'none',scrollTrigger:{trigger:element,start:'top top',end:'bottom top',scrub:1}}));
     root.querySelectorAll('[data-site-parallax] img').forEach(element=>gsap.fromTo(element,{yPercent:-6},{yPercent:0,ease:'none',scrollTrigger:{trigger:element.parentElement,start:'top bottom',end:'bottom top',scrub:1}}));
@@ -48,5 +51,5 @@ export function mountAboutMotion(root){
  const refresh=()=>window.ScrollTrigger?.refresh();root.querySelectorAll('details').forEach(el=>el.addEventListener('toggle',refresh,{signal:controller.signal}));root.querySelectorAll('img').forEach(el=>{if(!el.complete)el.addEventListener('load',refresh,{once:true,signal:controller.signal});});
  const onLoad=()=>start();if(document.readyState==='complete')start();else window.addEventListener('load',onLoad,{once:true,signal:controller.signal});
  media.addEventListener('change',start,{signal:controller.signal});
- return ()=>{controller.abort();stop();};
+ return ()=>{controller.abort();if(stepFrame)cancelAnimationFrame(stepFrame);stop();};
 }
