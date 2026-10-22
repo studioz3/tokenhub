@@ -19,8 +19,8 @@
 .token-benefits-intro h2 em{font-style:normal;color:#009fc9}
 .token-benefits-intro>p{max-width:610px;margin-inline:auto;font-size:14px;line-height:1.85;color:#526b79;padding:0}
 .token-benefits-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px}
-.token-benefit{display:flex;flex-direction:column;min-width:0;min-height:288px;padding:27px 28px 30px;background:#fff;border:1px solid #e0e9ee;border-top:3px solid #00a2d4;border-radius:8px;transition:transform .3s ease,box-shadow .3s ease,border-color .3s ease}
-.token-benefit:hover{transform:translateY(-4px);box-shadow:0 18px 38px rgba(8,54,80,.09);border-color:#c9e1e9;border-top-color:#00a2d4}
+.token-benefit{display:flex;flex-direction:column;min-width:0;min-height:288px;padding:27px 28px 30px;background:#fff;border:1px solid #e0e9ee;border-radius:8px;transition:transform .3s ease,box-shadow .3s ease,border-color .3s ease}
+.token-benefit:hover{transform:translateY(-4px);box-shadow:0 18px 38px rgba(8,54,80,.09);border-color:#c9e1e9}
 .token-benefit-top{display:flex;justify-content:space-between;align-items:center;margin-bottom:36px;gap:12px}
 .token-benefit-index{font-size:10px;font-weight:800;letter-spacing:.13em;color:#65808d}
 .token-benefit-icon{display:grid;place-items:center;width:46px;height:46px;flex:none;border-radius:12px;background:#eaf8fc;color:#009fc9}
