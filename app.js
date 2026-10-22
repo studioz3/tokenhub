@@ -1,6 +1,6 @@
 import {mountVfx} from './vfx.js?v=experience-vfx-v31';
 import {openUpGallery} from './up-gallery.js?v=gallery-v21';
-import {upOpportunity,upCard,upDetail,upPhotos} from './up.js?v=token-example-v31';
+import {upOpportunity,upCard,upDetail,upPhotos} from './up.js?v=token-progress-v32';
 import {offers,faq,transactions,articles} from './data.js';
 import {renderSimulator,updateSimulator} from './simulator.js';
 import {mountMotion} from './motion.js';
