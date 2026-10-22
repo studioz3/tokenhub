@@ -117,3 +117,6 @@ p,li,dd,blockquote,figcaption,.lead,.footnote{ text-wrap:pretty; }
 /* Align the access logo with the centered form's left edge. */
 .auth-main>.logo{margin-left:max(0px,calc((100% - 410px)/2))}
 @media(max-width:760px){.auth-main>.logo{margin-left:max(0px,calc((100% - 440px)/2))}}
+
+/* ExtraBold headings throughout the site and platform panels. */
+h1,h2,h3,h4,h5,h6,.hero h1,.hero h1 em,.hero-title-line{font-weight:800}
