@@ -179,3 +179,10 @@ html.about-smooth{scroll-behavior:auto}html.lenis,html.lenis body{height:auto}.l
 
 .about-hero-copy>*{max-width:100%}
 @media(max-width:760px){.orbit-node text{font-size:15px}}
+
+/* Navigation: seamless black header and more readable menu labels. */
+.site-header{border-bottom:0}
+.site-header .site-nav>a{font-size:15px}
+@media(min-width:1001px){.site-header .nav-login,.site-header .nav-actions>.btn{font-size:14px}}
+@media(min-width:1001px) and (max-width:1200px){.site-header .site-nav>a{font-size:14px}.site-header .site-nav{gap:18px}}
+@media(max-width:1000px){.site-header .site-nav{border-top:0}.site-header .site-nav>a{font-size:16px}}
