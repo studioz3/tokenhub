@@ -314,3 +314,12 @@ html.up-gallery-open{overflow:hidden}dialog.up-gallery-dialog{width:min(1320px,c
 @media(min-width:761px) and (max-width:1100px){.catalog-card .catalog-facts>div{padding:19px 14px}.catalog-card .catalog-facts dd{font-size:26px}.catalog-card .catalog-facts dt{font-size:10px}.catalog-property .catalog-facts{grid-template-columns:1fr}.catalog-property .catalog-facts>div{display:flex;justify-content:space-between;align-items:center;gap:12px;padding:16px}.catalog-property .catalog-facts dt{margin:0}.catalog-property .catalog-facts dd{font-size:24px}}
 @media(max-width:760px){.catalog-card .catalog-facts>div{padding:20px 16px}.catalog-card .catalog-facts dd{font-size:28px}.catalog-card .catalog-facts dt{font-size:10px}.catalog-card .catalog-facts dd small{font-size:13px}.catalog-property .catalog-facts{grid-template-columns:1fr}.catalog-property .catalog-facts>div{display:flex;justify-content:space-between;align-items:center;gap:12px;padding:17px 16px}.catalog-property .catalog-facts dt{margin:0}.catalog-property .catalog-facts dd{font-size:26px}.catalog-risk-note{font-size:11px;margin-bottom:18px}}
 @media(max-width:360px){.catalog-card .catalog-facts>div{padding:17px 12px}.catalog-card .catalog-facts dd{font-size:25px}.catalog-card .catalog-facts dt{font-size:10px;letter-spacing:0}.catalog-card .catalog-facts dd small{font-size:12px}}
+
+/* Compact funding summary with a clear reading hierarchy. */
+.catalog-card .catalog-risk-note{margin:0 0 20px;font-size:12px}
+.catalog-card .catalog-funding{padding:20px 22px;margin-top:auto;margin-bottom:24px;background:#f4f8fa;border:1px solid #d8e5ec;border-radius:12px}
+.catalog-card .catalog-funding>div:first-child{align-items:center;margin-bottom:16px;font-size:13px;font-weight:600}
+.catalog-card .catalog-funding>div:first-child strong{font-size:26px;line-height:1;letter-spacing:-.035em;font-variant-numeric:tabular-nums}
+.catalog-card .catalog-funding .progress{height:6px;margin-bottom:14px}
+.catalog-card .catalog-funding small{font-size:13px;line-height:1.6;color:#486779}
+@media(max-width:480px){.catalog-card .catalog-funding{padding:18px}.catalog-card .catalog-funding small{font-size:12px}}
