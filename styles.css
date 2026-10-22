@@ -46,3 +46,19 @@
 .token-benefit:hover .token-benefit-cta span{transform:translateX(4px)}
 @media(max-width:650px){.token-benefits .token-benefits-intro{gap:15px;margin-bottom:30px}.token-benefits .token-benefits-intro h2{max-width:100%}.token-benefits .token-benefits-intro>p{max-width:100%}}
 @media(prefers-reduced-motion:reduce){.token-benefit-cta span{transition:none}}
+
+/* Home — vitrine centralizada e cards inteiramente clicáveis */
+.home-opportunities .home-offers-head{display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;gap:22px;margin-bottom:36px}
+.home-opportunities .home-offers-head>div{width:100%;display:flex;flex-direction:column;align-items:center}
+.home-opportunities .home-offers-head .eyebrow{text-align:center}
+.home-opportunities .home-offers-head h2{max-width:780px;margin:0 auto;text-align:center}
+.home-opportunities .home-offers-head p{max-width:650px;margin:18px auto 0;text-align:center}
+.home-opportunities .home-offers-head>.btn{align-self:center}
+.home-opportunities .offer-card{position:relative}
+.home-opportunities .offer-body h3 a::after{content:"";position:absolute;inset:0;z-index:2}
+.home-opportunities .offer-art .art-meta{z-index:4;pointer-events:none}
+.home-opportunities .offer-art .art-meta .icon-button{position:relative;z-index:5;pointer-events:auto}
+.home-opportunities .offer-card:focus-within{outline:2px solid #008fb9;outline-offset:3px}
+.home-opportunities .offer-card:hover{box-shadow:0 17px 40px rgba(8,54,80,.13);transform:translateY(-4px)}
+@media(max-width:760px){.home-opportunities .home-offers-head{gap:20px;margin-bottom:30px}.home-opportunities .home-offers-head p{margin-top:15px}.home-opportunities .home-offers-head>.btn{align-self:center}}
+@media(prefers-reduced-motion:reduce){.home-opportunities .offer-card:hover{transform:none}}
