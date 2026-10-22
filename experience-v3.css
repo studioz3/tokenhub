@@ -291,3 +291,26 @@ html.up-gallery-open{overflow:hidden}dialog.up-gallery-dialog{width:min(1320px,c
 
 /* Match About hero accent to the other page banners. */
 .about-hero h1 em{color:#00a2d4}
+
+/* Comparable decision metrics: one scale and contrast for all four conditions. */
+.catalog-card .catalog-facts{border:1px solid #d8e5ec;background:#d8e5ec;border-radius:12px;overflow:hidden;gap:1px;padding:0;margin:0 0 16px;grid-template-columns:repeat(2,minmax(0,1fr))}
+.catalog-card .catalog-facts>div{min-width:0;background:#f4f8fa;padding:22px 20px}
+.catalog-card .catalog-facts dt{font-size:11px;line-height:1.45;letter-spacing:.025em;font-weight:600;color:#486779;margin:0 0 11px}
+.catalog-card .catalog-facts dd{font-size:30px;font-weight:700;line-height:1.2;letter-spacing:-.035em;color:#07364e;font-variant-numeric:tabular-nums;white-space:nowrap}
+.catalog-card .catalog-facts dd small{font-size:15px;font-weight:500;letter-spacing:0;display:inline;margin:0}
+.catalog-risk-note{font-size:11px;line-height:1.65;color:#526f80;margin:0 0 24px}
+.catalog-card .catalog-funding{padding:20px 0 26px;margin-top:auto}
+.catalog-card .catalog-funding>div:first-child{font-size:12px;font-weight:500;color:#486779}
+.catalog-card .catalog-funding>div:first-child strong{font-size:13px;font-weight:700;color:#07364e}
+.catalog-card .catalog-funding .progress{height:5px;border-radius:5px;overflow:hidden;background:#e1ebf0;margin-bottom:12px}
+.catalog-card .catalog-funding small{font-size:11px;line-height:1.6;color:#526f80}
+.catalog-card .catalog-link{font-size:15px;padding:22px 0}
+.catalog-property .catalog-facts{grid-template-columns:repeat(3,minmax(0,1fr))}
+.catalog-property .catalog-facts>div{padding:22px 14px;grid-column:auto}
+.catalog-property .catalog-facts dd{font-size:clamp(20px,1.65vw,29px)}
+.catalog-property .catalog-facts dd small{font-size:12px}
+.catalog-property .catalog-property-note{padding:18px 0 28px}
+@media(min-width:1600px){.catalog-card .catalog-facts>div{padding:25px 23px}.catalog-property .catalog-facts>div{padding:25px 16px}}
+@media(min-width:761px) and (max-width:1100px){.catalog-card .catalog-facts>div{padding:19px 14px}.catalog-card .catalog-facts dd{font-size:26px}.catalog-card .catalog-facts dt{font-size:10px}.catalog-property .catalog-facts{grid-template-columns:1fr}.catalog-property .catalog-facts>div{display:flex;justify-content:space-between;align-items:center;gap:12px;padding:16px}.catalog-property .catalog-facts dt{margin:0}.catalog-property .catalog-facts dd{font-size:24px}}
+@media(max-width:760px){.catalog-card .catalog-facts>div{padding:20px 16px}.catalog-card .catalog-facts dd{font-size:28px}.catalog-card .catalog-facts dt{font-size:10px}.catalog-card .catalog-facts dd small{font-size:13px}.catalog-property .catalog-facts{grid-template-columns:1fr}.catalog-property .catalog-facts>div{display:flex;justify-content:space-between;align-items:center;gap:12px;padding:17px 16px}.catalog-property .catalog-facts dt{margin:0}.catalog-property .catalog-facts dd{font-size:26px}.catalog-risk-note{font-size:11px;margin-bottom:18px}}
+@media(max-width:360px){.catalog-card .catalog-facts>div{padding:17px 12px}.catalog-card .catalog-facts dd{font-size:25px}.catalog-card .catalog-facts dt{font-size:10px;letter-spacing:0}.catalog-card .catalog-facts dd small{font-size:12px}}
