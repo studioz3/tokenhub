@@ -1,8 +1,9 @@
+import {openUpGallery} from './up-gallery.js?v=gallery-v21';
 import {upOpportunity,upCard,upDetail,upPhotos} from './up.js?v=up-concept-v20';
 import {offers,faq,transactions,articles} from './data.js';
 import {renderSimulator,updateSimulator} from './simulator.js';
 import {mountMotion} from './motion.js';
-import {mountAboutMotion} from './about-motion.js?v=up-v18';
+import {mountAboutMotion} from './about-motion.js?v=gallery-v21';
 import {photo,portfolioStory} from './photos.js';
 import {balanceCard,balanceDetails,toggleBalance,toggleAsset,toggleOtherAssets,copyAssetIdentifier} from './wallet-details.js';
 import {renderOtc,mountOtc} from './otc.js';
@@ -89,7 +90,7 @@ function walletAction(action){if(action==='Trocar'){location.hash='/app/otc';ret
 
 document.addEventListener('click',async e=>{const b=e.target.closest('button,[data-action]');if(!b)return;const action=b.dataset.action;
  if(b.dataset.favorite){const id=b.dataset.favorite;if(![upOpportunity,...offers].some(o=>o.id===id))return;state.favorites.has(id)?state.favorites.delete(id):state.favorites.add(id);try{localStorage.setItem('tokenhub:favorites',JSON.stringify([...state.favorites]));}catch{}if(document.querySelector('#offers-results'))updateOfferResults();else refreshMain();toast(state.favorites.has(id)?'Projeto salvo nos favoritos.':'Projeto removido dos favoritos.');}
- if(b.dataset.upPhoto!==undefined){const i=Number(b.dataset.upPhoto),[name,title]=upPhotos[i];openDialog(title,`<div class="up-lightbox"><img src="assets/photos/up/${name}" alt="${title}"><div><button class="btn btn-outline" data-up-photo="${(i+7)%8}">← Anterior</button><span>${i+1} / 8</span><button class="btn btn-outline" data-up-photo="${(i+1)%8}">Próxima →</button></div></div>`);}
+ if(b.dataset.upPhoto!==undefined)openUpGallery(document.querySelector('#dialog'),Number(b.dataset.upPhoto));
  if(b.dataset.category){setChips('filter',b.dataset.category,'[data-category]');updateOfferResults();}
  if(b.dataset.faqCategory){setChips('faqCategory',b.dataset.faqCategory,'[data-faq-category]');document.querySelector('#faq-results').innerHTML=faqResults();}
  if(b.dataset.extractFilter){setChips('extractFilter',b.dataset.extractFilter,'[data-extract-filter]');document.querySelector('#extract-results').innerHTML=extractRows();}
