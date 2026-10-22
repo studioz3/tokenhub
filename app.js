@@ -9,7 +9,7 @@ import {photo,portfolioStory} from './photos.js';
 import {balanceCard,balanceDetails,toggleBalance,toggleAsset,toggleOtherAssets,copyAssetIdentifier} from './wallet-details.js';
 import {renderOtc,mountOtc} from './otc.js';
 import {documents} from './documents.js';
-import {official,companyIdentity,officialServices,serviceContent,officialOnboarding} from './official.js';
+import {official,companyIdentity,officialServices,serviceContent,officialOnboarding} from './official.js?v=ecosystem-2cards-v1';
 
 const app=document.querySelector('#app');
 const money=n=>Number(n).toLocaleString('pt-BR',{style:'currency',currency:'BRL'});
