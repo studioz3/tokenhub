@@ -5,16 +5,19 @@ export function mountAboutMotion(root){
  let context,lenis,tick;let selected=0;const controller=new AbortController();
  root.querySelector('.about-vision-link')?.addEventListener('click',event=>{event.preventDefault();const target=root.querySelector('#tokenhub-visao');if(lenis)lenis.scrollTo(target,{offset:-90});else target.scrollIntoView({behavior:media.matches?'instant':'smooth'});},{signal:controller.signal});
  const tabs=[...root.querySelectorAll('[data-discovery]')];
- const select=(index,focus=false)=>{selected=index;tabs.forEach((tab,i)=>{tab.setAttribute('aria-selected',String(i===index));tab.tabIndex=i===index?0:-1;const panel=root.querySelector(`#discovery-panel-${i}`);if(panel)panel.hidden=i!==index;});if(focus)tabs[index]?.focus();const panel=root.querySelector(`#discovery-panel-${index} .discovery-preview`);if(panel&&!media.matches)window.gsap?.fromTo(panel,{y:14,opacity:0},{y:0,opacity:1,duration:.35,clearProps:'all'});};
- tabs.forEach((tab,i)=>{tab.addEventListener('click',()=>select(i),{signal:controller.signal});tab.addEventListener('keydown',e=>{let next;if(e.key==='ArrowDown'||e.key==='ArrowRight')next=(i+1)%tabs.length;if(e.key==='ArrowUp'||e.key==='ArrowLeft')next=(i+tabs.length-1)%tabs.length;if(e.key==='Home')next=0;if(e.key==='End')next=tabs.length-1;if(next!==undefined){e.preventDefault();select(next,true);}},{signal:controller.signal});});
- root.querySelector('[data-discovery-next]')?.addEventListener('click',()=>select((selected+1)%tabs.length),{signal:controller.signal});
+ const select=(index,focus=false)=>{if(index===selected){if(focus)tabs[index]?.focus();return;}selected=index;tabs.forEach((tab,i)=>{tab.setAttribute('aria-selected',String(i===index));tab.tabIndex=i===index?0:-1;const panel=root.querySelector(`#discovery-panel-${i}`);if(panel)panel.hidden=i!==index;});if(focus)tabs[index]?.focus();const panel=root.querySelector(`#discovery-panel-${index} .discovery-preview`);if(panel&&!media.matches)window.gsap?.fromTo(panel,{y:14,opacity:0},{y:0,opacity:1,duration:.35,clearProps:'all'});};
+ tabs.forEach((tab,i)=>{tab.addEventListener('click',()=>jumpDiscovery(i),{signal:controller.signal});tab.addEventListener('keydown',e=>{let next;if(e.key==='ArrowDown'||e.key==='ArrowRight')next=(i+1)%tabs.length;if(e.key==='ArrowUp'||e.key==='ArrowLeft')next=(i+tabs.length-1)%tabs.length;if(e.key==='Home')next=0;if(e.key==='End')next=tabs.length-1;if(next!==undefined){e.preventDefault();jumpDiscovery(next,true);}},{signal:controller.signal});});
+ root.querySelector('[data-discovery-next]')?.addEventListener('click',()=>jumpDiscovery((selected+1)%tabs.length),{signal:controller.signal});
  root.querySelectorAll('[data-step-jump]').forEach(link=>link.addEventListener('click',e=>{e.preventDefault();const target=root.querySelector(`#how-step-${link.dataset.stepJump}`);if(lenis)lenis.scrollTo(target,{offset:-115});else target?.scrollIntoView({behavior:media.matches?'instant':'smooth'});},{signal:controller.signal}));
+ const discoveryLine=()=>matchMedia('(max-width:760px)').matches?Math.min(innerHeight-60,460):innerHeight*.6;
+ const jumpDiscovery=(index,focus=false)=>{select(index,focus);const target=tabs[index];if(!target)return;const top=target.getBoundingClientRect().top+scrollY-discoveryLine()+20;if(lenis)lenis.scrollTo(top,{immediate:true});else window.scrollTo({top,behavior:'instant'});};
+ const syncDiscovery=()=>{if(!tabs.length)return;let index=0;tabs.forEach((tab,i)=>{if(tab.getBoundingClientRect().top<=discoveryLine())index=i;});if(index!==selected)select(index);};
  const stepNodes=[...root.querySelectorAll('.how-step')],stepLinks=[...root.querySelectorAll('[data-step-jump]')];
  const activate=index=>{stepNodes.forEach((node,i)=>node.classList.toggle('is-active',i===index));stepLinks.forEach((link,i)=>{if(i===index)link.setAttribute('aria-current','step');else link.removeAttribute('aria-current');});};activate(0);
  // Derive the active step from current geometry, including reverse scroll and large jumps.
  const syncSteps=()=>{if(!stepNodes.length)return;const readingLine=innerHeight*.5;let index=0;stepNodes.forEach((node,i)=>{if(node.getBoundingClientRect().top<=readingLine)index=i;});activate(index);const first=stepNodes[0].getBoundingClientRect(),last=stepNodes.at(-1).getBoundingClientRect();const progress=Math.min(1,Math.max(0,(readingLine-first.top)/(last.top-first.top||1)));const bar=root.querySelector('.how-progress > span');if(bar)bar.style.transform=`scaleX(${.2+.8*progress})`;};
- let stepFrame;const queueSteps=()=>{if(stepFrame)return;stepFrame=requestAnimationFrame(()=>{stepFrame=null;syncSteps();});};
- window.addEventListener('scroll',queueSteps,{passive:true,signal:controller.signal});window.addEventListener('resize',queueSteps,{signal:controller.signal});syncSteps();
+ let stepFrame;const queueSteps=()=>{if(stepFrame)return;stepFrame=requestAnimationFrame(()=>{stepFrame=null;syncSteps();syncDiscovery();});};
+ window.addEventListener('scroll',queueSteps,{passive:true,signal:controller.signal});window.addEventListener('resize',queueSteps,{signal:controller.signal});syncSteps();syncDiscovery();
  // One geometry model drives each ellipse, its markers and its upright labels.
  const orbit=root.querySelector('.about-orbit'),orbitState={progress:0};
  const tracks={a:{rx:185,ry:112,angle:-28,travel:60},b:{rx:210,ry:130,angle:45,travel:-35}};
@@ -48,7 +51,7 @@ export function mountAboutMotion(root){
  if(Lenis&&matchMedia('(hover:hover) and (pointer:fine)').matches){document.documentElement.classList.add('about-smooth');lenis=new Lenis({duration:1.05,smoothWheel:true});lenis.on('scroll',ScrollTrigger.update);tick=time=>lenis?.raf(time*1000);gsap.ticker.add(tick);}
  ScrollTrigger.refresh();
  };
- const refresh=()=>window.ScrollTrigger?.refresh();root.querySelectorAll('details').forEach(el=>el.addEventListener('toggle',refresh,{signal:controller.signal}));root.querySelectorAll('img').forEach(el=>{if(!el.complete)el.addEventListener('load',refresh,{once:true,signal:controller.signal});});
+ const refresh=()=>{window.ScrollTrigger?.refresh();queueSteps();};root.querySelectorAll('details').forEach(el=>el.addEventListener('toggle',refresh,{signal:controller.signal}));root.querySelectorAll('img').forEach(el=>{if(!el.complete)el.addEventListener('load',refresh,{once:true,signal:controller.signal});});
  const onLoad=()=>start();if(document.readyState==='complete')start();else window.addEventListener('load',onLoad,{once:true,signal:controller.signal});
  media.addEventListener('change',start,{signal:controller.signal});
  return ()=>{controller.abort();if(stepFrame)cancelAnimationFrame(stepFrame);stop();};
