@@ -6,12 +6,12 @@ export const offers=[
  {id:'recebiveis',name:'Fluxo Empresas',issuer:'Projeto de recebíveis demonstrativo',category:'Recebíveis',rate:13.8,term:9,min:100,raised:690000,goal:1200000,progress:57.5,remaining:18,risk:'Alto',art:'flow',description:'Uma estrutura demonstrativa de recebíveis empresariais. A análise real dependeria de contratos, garantias e capacidade de pagamento dos devedores.'}
 ];
 export const faq=[
- ['O que é a TokenHub?','A TokenHub apresenta uma proposta de acesso a ativos reais por meio da tokenização, com destaque para o mercado imobiliário. Nesta versão, você conhece essa jornada usando exemplos fictícios.','Conceitos'],
+ ['O que é a TokenHub?','A TokenHub apresenta uma proposta de acesso a ativos reais por meio da tokenização, com destaque para o mercado imobiliário. Nesta versão, você conhece essa jornada com dados fictícios.','Conceitos'],
  ['Quem pode investir na TokenHub?','O FAQ oficial informa acesso para pessoas físicas maiores de idade, com documentação válida e cadastro aprovado. A demonstração não aprova cadastros nem realiza investimentos.','Investidores'],
  ['O que é tokenização?','É uma forma de representar digitalmente direitos sobre um ativo. O direito de cada token depende dos contratos e das condições da oferta.','Conceitos'],
  ['Como começo a investir?','A jornada proposta é criar uma conta, verificar a identidade, analisar uma oferta e confirmar os documentos e os riscos. Nesta demonstração você pode percorrer a interface sem enviar dados.','Investidores'],
  ['A rentabilidade é garantida?','Não. Projeções não garantem retorno. Cada oferta pode apresentar risco de crédito, mercado, liquidez e perda do capital. Os valores desta demonstração são fictícios.','Investidores'],
- ['Existe um investimento mínimo?','Cada oferta define seu próprio mínimo. Os valores apresentados nesta interface são exemplos e não constituem condições comerciais da TokenHub.','Investidores'],
+ ['Existe um investimento mínimo?','Cada oferta define seu próprio mínimo. Os valores apresentados nesta interface são ilustrativos e não constituem condições comerciais da TokenHub.','Investidores'],
  ['Posso resgatar quando quiser?','A liquidez depende das condições contratuais e da existência de compradores. Tokenização não garante venda antecipada ou resgate imediato.','Investidores'],
  ['Quais são as taxas?','O site oficial informa abertura e manutenção de conta sem custo e cobrança em negociações ou saques. Consulte a tabela vigente no canal oficial; as taxas desta demonstração são fictícias.','Investidores'],
  ['Como apresento um ativo?','A área Para empresas organiza o contato inicial e as informações necessárias para avaliação. A elegibilidade e o enquadramento de cada projeto precisam de análise específica.','Empresas'],

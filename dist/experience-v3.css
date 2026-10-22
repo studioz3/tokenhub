@@ -12,3 +12,130 @@
 .company-identity{display:grid;gap:8px;font-size:13px;line-height:1.75;overflow-wrap:anywhere}.company-identity address{font-style:normal;color:var(--muted)}.footer-institutional{border-top:1px solid #ffffff20;padding:26px 0}.site-footer .company-identity{color:#e9f4fa;font-size:12px}.site-footer .company-identity address{color:#b5cad7}.site-footer .company-identity a{color:#70cfea}.official-service{display:flex;flex-direction:column;gap:18px}.official-service>.icon{width:32px;height:32px;color:var(--cyan-dark)}.official-service .arrow-link{margin-top:auto}.official-services .footnote{max-width:900px}.footer-bottom span{white-space:normal;max-width:260px}
 @media(max-width:760px){.about-benefits{grid-template-columns:minmax(0,1fr)}.about-benefits .panel{min-width:0}}
 .page-hero .breadcrumbs{min-width:0;white-space:nowrap}.page-hero .breadcrumbs>a,.page-hero .breadcrumbs>span:not(:last-child){flex-shrink:0}.page-hero .breadcrumb-current{min-width:0;overflow:hidden;text-overflow:ellipsis}
+
+
+/* Home photograph: 100% visible on the right, fading to 0% on the left. */
+.hero-photo{isolation:isolate;background:var(--navy)}
+.hero-photo::before{content:"";position:absolute;inset:0;z-index:-1;pointer-events:none;background:linear-gradient(90deg,rgba(8,54,80,.32),rgba(8,54,80,.08)),url("assets/photos/hero-terrenos-v2.webp") center right/cover no-repeat;-webkit-mask-image:linear-gradient(to right,transparent 0%,transparent 24%,#000 100%);mask-image:linear-gradient(to right,transparent 0%,transparent 24%,#000 100%)}
+.hero-photo .hero-grid{grid-template-columns:1fr}
+.hero-photo .hero-copy{max-width:660px}
+.hero-photo h1,.hero-photo .hero-copy>p{text-shadow:0 2px 18px rgba(0,17,30,.4)}
+.hero-photo .hero-copy>p{color:#d1e2ec}
+.hero-photo .hero-foot{color:#c2d8e4}
+.hero-photo .btn-light{background:rgba(8,54,80,.65)}
+@media(max-width:760px){.hero-photo::before{background-position:62% center;background-image:linear-gradient(rgba(8,54,80,.55),rgba(8,54,80,.75)),url("assets/photos/hero-terrenos-v2.webp");-webkit-mask-image:linear-gradient(to right,transparent,#000);mask-image:linear-gradient(to right,transparent,#000)}.hero-photo .hero-copy{max-width:100%}}
+
+/* White labels on blue actions and ExtraBold home heading. */
+.btn-primary,.btn-primary:hover,.btn-primary:focus-visible,.btn-dark,.btn-dark:hover,.otc-desk .btn-primary:disabled{color:#fff}
+.hero h1,.hero h1 em{font-weight:800}
+
+/* Land tokenization art carries its own clear space for the title. */
+.hero-photo::before{background-image:linear-gradient(90deg,rgba(8,54,80,.18),transparent 75%),url("assets/photos/hero-terrenos-v2.webp");background-position:center right;-webkit-mask-image:linear-gradient(to right,transparent 0%,#000 65%);mask-image:linear-gradient(to right,transparent 0%,#000 65%)}
+@media(max-width:760px){.hero-photo::before{background-image:linear-gradient(rgba(8,54,80,.58),rgba(8,54,80,.78)),url("assets/photos/hero-terrenos-v2.webp");background-position:72% center}}
+
+/* Keep the desktop headline in the two lines approved in the reference. */
+.hero-photo .hero-copy,.hero-photo h1{max-width:840px}
+.hero-title-line{display:block;white-space:nowrap}
+@media(max-width:1000px){.hero-title-line{white-space:normal}.hero-photo .hero-copy{max-width:100%}}
+
+/* Editorial wrapping: avoid short orphaned last lines without fixed spaces. */
+h1,h2,h3,h4,h5,h6{ text-wrap:balance; }
+p,li,dd,blockquote,figcaption,.lead,.footnote{ text-wrap:pretty; }
+/* Preserve the approved desktop hero composition; balance its mobile lines. */
+.hero-title-line{ text-wrap:balance; }
+
+/* Black footer and black fade for the land hero. */
+.site-footer{background:#000}
+.hero-photo{background:#000}
+.hero-photo::before{
+ background-image:linear-gradient(to right,#000 0%,rgba(0,0,0,.92) 24%,rgba(0,0,0,.5) 46%,rgba(0,0,0,.12) 68%,transparent 100%),url("assets/photos/hero-terrenos-v2.webp");
+ -webkit-mask-image:none;mask-image:none;
+}
+.hero-photo .btn-light{background:rgba(0,0,0,.55)}
+@media(max-width:760px){
+ .hero-photo::before{background-image:linear-gradient(to right,rgba(0,0,0,.94),rgba(0,0,0,.68) 60%,rgba(0,0,0,.42)),url("assets/photos/hero-terrenos-v2.webp")}
+}
+
+@media(max-width:760px){.editorial-break{display:none}}
+
+/* Separate navigation, institutional data and the legal footer. */
+.site-footer .footer-grid{padding-bottom:48px}
+.site-footer .footer-institutional{padding-top:36px;padding-bottom:36px}
+.site-footer .footer-bottom{margin-top:24px;padding-top:28px}
+@media(max-width:760px){.site-footer .footer-grid{padding-bottom:32px;row-gap:36px}.site-footer .footer-institutional{padding-top:28px;padding-bottom:28px}.site-footer .footer-bottom{margin-top:20px}}
+
+/* The four main interior introductions share black photographic art direction. */
+.page-hero-art{position:relative;isolation:isolate;overflow:hidden;background:#000;color:#fff}
+.page-hero-art::before{content:"";position:absolute;inset:0;z-index:-1;background-image:linear-gradient(90deg,#000 0%,rgba(0,0,0,.93) 25%,rgba(0,0,0,.58) 48%,rgba(0,0,0,.08) 80%),var(--page-art);background-size:cover;background-position:center right;pointer-events:none}
+.page-hero-opportunities{--page-art:url("assets/photos/header-opportunities.webp")}
+.page-hero-how{--page-art:url("assets/photos/header-how.webp")}
+.page-hero-companies{--page-art:url("assets/photos/header-companies.webp")}
+.page-hero-about{--page-art:url("assets/photos/header-about.webp")}
+.page-hero-art h1{color:#fff;max-width:700px;text-shadow:0 2px 16px #0008}
+.page-hero-art p{color:#d9e0e5;max-width:650px}
+.page-hero-art .eyebrow{color:#65d4f0}
+.page-hero-art .breadcrumbs{color:#b8c7cf}
+.page-hero-art .breadcrumbs a{color:#a2e6f7}
+@media(max-width:760px){.page-hero-art::before{background-position:68% center;background-image:linear-gradient(90deg,rgba(0,0,0,.94),rgba(0,0,0,.72) 65%,rgba(0,0,0,.48)),var(--page-art)}.page-hero-art h1{font-size:clamp(32px,7vw,46px)}}
+
+/* Black site navigation on desktop and mobile. */
+.site-header,.site-header .site-nav{background:#000}
+
+/* Give the access panel breathing room and keep the portrait and brand in frame. */
+@media(min-width:761px){
+ .auth .photo-auth{margin-top:0}
+ .photo-auth .auth-photo img{object-position:65% 12%}
+ .photo-auth .auth-panel-copy{padding-bottom:100px;min-height:490px}
+ .photo-auth .auth-panel-copy .brand-symbol{width:230px;height:230px;right:24px;bottom:24px}
+}
+
+/* Access is a visible outlined action, including on small phones. */
+.site-header .nav-login{display:inline-flex;color:#fff;border:1px solid #ffffff75;background:transparent;min-height:46px;padding:12px 20px}
+.site-header .nav-login:hover{background:#ffffff16;border-color:#fff}
+.auth,.auth-main{min-height:100vh}
+.mobile-banner-art{display:none}
+@media(max-width:760px){
+ .site-header .nav-login{display:inline-flex}
+ .hero-photo::before,.page-hero-art::before{display:none}
+ .hero-photo .hero-grid{min-height:0}
+ .hero-photo .hero-copy{padding-top:44px;padding-bottom:16px}
+ .hero-photo .hero-foot{margin-top:26px}
+ .page-hero-art{padding-bottom:0}
+ .mobile-banner-art{display:block;position:relative;background:#000;line-height:0;margin-top:8px;overflow:hidden}
+ .mobile-banner-art img{display:block;width:100%;height:auto;aspect-ratio:4/3;object-fit:contain;-webkit-mask-image:linear-gradient(to bottom,transparent,#000 18%);mask-image:linear-gradient(to bottom,transparent,#000 18%)}
+ .site-header .nav-actions{gap:6px}
+ .site-header .nav-actions .btn{padding:10px 11px;min-height:40px}
+}
+@media(max-width:400px){
+ .site-header .logo{width:96px}
+ .site-header .nav-inner{gap:8px}
+ .site-header .nav-actions{gap:5px}
+ .site-header .nav-actions .btn{font-size:10px;padding:9px 8px;min-height:40px}
+ .site-header .menu-toggle{width:32px;min-width:32px}
+}
+
+/* Align the access logo with the centered form's left edge. */
+.auth-main>.logo{margin-left:max(0px,calc((100% - 410px)/2))}
+@media(max-width:760px){.auth-main>.logo{margin-left:max(0px,calc((100% - 440px)/2))}}
+
+/* ExtraBold headings throughout the site and platform panels. */
+h1,h2,h3,h4,h5,h6,.hero h1,.hero h1 em,.hero-title-line{font-weight:800}
+
+/* Larger, more legible numbered process steps. */
+.process-item::before{font-size:32px;line-height:1.15;padding-top:0;font-variant-numeric:lining-nums tabular-nums}
+@media(max-width:760px){.process-item::before{font-size:28px}}
+
+/* About: human team photograph, with a gentle dark treatment. */
+.page-hero-about{--page-art:url("assets/photos/header-about-team.webp")}
+.page-hero-about::before{
+ background-image:linear-gradient(90deg,#000 0%,#000 38%,rgba(0,0,0,.68) 57%,rgba(0,0,0,.10) 78%,rgba(0,0,0,.08)),var(--page-art);
+ background-size:cover,auto 110%;
+ background-position:center,right top;
+ background-repeat:no-repeat;
+}
+@media(max-width:760px){.page-hero-about .mobile-banner-art img{filter:brightness(.94)}}
+
+/* About header: smiling employees reviewing a tablet. */
+.page-hero-about{--page-art:url("assets/photos/header-about-employees.png");min-height:360px}
+.page-hero-about::before{background-image:linear-gradient(90deg,#000 0%,rgba(0,0,0,.82) 35%,rgba(0,0,0,.12) 65%,rgba(0,0,0,.06)),var(--page-art);background-size:cover,auto 100%;background-position:center,right center;background-repeat:no-repeat}
+@media(max-width:760px){.page-hero-about{min-height:0}.page-hero-about .mobile-banner-art img{aspect-ratio:4/3;object-fit:cover;object-position:right center;filter:none}}
