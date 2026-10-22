@@ -141,3 +141,7 @@
 @keyframes biz-hand-invite{0%,35%,100%{transform:translateY(0)}50%{transform:translateY(6px)}65%{transform:translateY(0)}}
 @media(max-width:760px){.biz-check-guide{gap:13px;margin-top:22px}.biz-check-hand{flex-basis:40px;width:40px;height:40px}.biz-check-guide strong{font-size:15px}.biz-check-guide p{font-size:13px}}
 @media(prefers-reduced-motion:reduce){.biz-check-hand{animation:none}}
+
+/* Give each benefit a full reading interval before the next scroll activation. */
+.biz-page .biz-benefit-tabs>button{min-height:clamp(620px,80vh,920px)}
+@media(max-width:760px){.biz-page .biz-benefit-tabs>button{min-height:clamp(420px,65svh,650px)}}
