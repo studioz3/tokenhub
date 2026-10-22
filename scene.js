@@ -22,8 +22,11 @@ export function createHeroScene(host,{paused=false}={}){
  const mesh=(geometry,material,parent=core)=>{geometries.add(geometry);const object=new THREE.Mesh(geometry,material);parent.add(object);return object;};
  const disc=mesh(new THREE.CylinderGeometry(1.39,1.39,.3,72),navy);disc.rotation.x=Math.PI/2;
  for(const z of [-.15,.16]){const ring=mesh(new THREE.TorusGeometry(1.34,.025,8,72),silver);ring.position.z=z;}
- const face=mesh(new THREE.TorusGeometry(.75,.1,12,72),cyan);face.position.z=.19;
- for(const sign of [-1,1]){const slash=mesh(new THREE.BoxGeometry(.2,.53,.12),cyan);slash.position.set(sign*.42,sign*.82,.19);slash.rotation.z=-.54;}
+ // The coin face uses the supplied official SVG, never reconstructed primitives.
+ const symbolTexture=new THREE.TextureLoader().load('assets/tokenhub-symbol-white.svg',texture=>{if(disposed)texture.dispose();else render();});
+ symbolTexture.colorSpace=THREE.SRGBColorSpace;
+ const symbolMaterial=new THREE.MeshBasicMaterial({map:symbolTexture,transparent:true,alphaTest:.05,depthWrite:false,side:THREE.DoubleSide,toneMapped:false});materials.add(symbolMaterial);
+ const face=mesh(new THREE.PlaneGeometry(1.38,1.38*473/344),symbolMaterial);face.position.z=.205;
  for(let i=0;i<48;i++){const a=i/48*Math.PI*2;const tick=mesh(new THREE.BoxGeometry(.015,.075,.015),silver);tick.position.set(Math.sin(a)*1.16,Math.cos(a)*1.16,.17);tick.rotation.z=-a;}
  const ringGroup=new THREE.Group();world.add(ringGroup);ringGroup.rotation.set(1.05,.15,.1);
  const path=new THREE.EllipseCurve(0,0,2.45,2.45,0,Math.PI*2,false,0);
@@ -59,5 +62,5 @@ export function createHeroScene(host,{paused=false}={}){
  canvas.addEventListener('webglcontextlost',event=>{event.preventDefault();contextLost=true;renderer.setAnimationLoop(null);host.dataset.sceneState='fallback';host.dataset.sceneRunning='false';},{signal});
  canvas.addEventListener('webglcontextrestored',()=>{contextLost=false;host.dataset.sceneState='ready';resize();updateLoop();},{signal});
  host.appendChild(canvas);host.dataset.sceneState='ready';resize();updateLoop();
- return {focusAsset(index){selected=index;host.dataset.activeAsset=String(index);nodes.forEach(({node},i)=>node.scale.setScalar(i===index?1.4:1));render();},setPaused(value){paused=value;targetX=targetY=0;updateLoop();},dispose(){if(disposed)return;disposed=true;controller.abort();resizeObserver.disconnect();visibilityObserver.disconnect();renderer.setAnimationLoop(null);geometries.forEach(g=>g.dispose());materials.forEach(m=>m.dispose());renderer.dispose();renderer.forceContextLoss();canvas.remove();}};
+ return {focusAsset(index){selected=index;host.dataset.activeAsset=String(index);nodes.forEach(({node},i)=>node.scale.setScalar(i===index?1.4:1));render();},setPaused(value){paused=value;targetX=targetY=0;updateLoop();},dispose(){if(disposed)return;disposed=true;controller.abort();resizeObserver.disconnect();visibilityObserver.disconnect();renderer.setAnimationLoop(null);geometries.forEach(g=>g.dispose());materials.forEach(m=>m.dispose());symbolTexture.dispose();renderer.dispose();renderer.forceContextLoss();canvas.remove();}};
 }
