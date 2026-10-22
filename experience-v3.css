@@ -340,3 +340,25 @@ html.up-gallery-open{overflow:hidden}dialog.up-gallery-dialog{width:min(1320px,c
 .up-video-fullscreen>span:first-child{display:grid;place-items:center;width:38px;height:38px;border-radius:50%;background:var(--brand-blue);color:white;font-size:15px;padding-left:2px}.up-video-fullscreen small{display:block;margin-top:5px;font-size:11px;font-weight:500;color:#526f80}.up-video-fullscreen>span:last-child{font-size:28px;margin-left:12px}.up-video-fullscreen:hover{transform:translateY(-3px);background:#edf8fc}.up-video-fullscreen:focus-visible{outline:3px solid var(--brand-blue);outline-offset:5px}
 .up-video video:fullscreen{object-fit:contain;background:#000}.up-video video:-webkit-full-screen{object-fit:contain;background:#000}
 @media(max-width:480px){.up-video-fullscreen{font-size:14px;padding:15px 17px;gap:12px}.up-video-fullscreen>span:last-child{margin-left:0}}
+
+/* Shared VFX uses the single brand blue, with no looping attention effects. */
+.progress>span{transform-origin:left center}
+.catalog-card{position:relative;isolation:isolate}
+.catalog-card::before{content:'';position:absolute;inset:0;z-index:3;pointer-events:none;border-radius:inherit;opacity:0;background:radial-gradient(360px circle at var(--vfx-x,50%) var(--vfx-y,50%),color-mix(in srgb,var(--brand-blue) 9%,transparent),transparent 72%);transition:opacity .4s}
+.catalog-card.vfx-lit::before{opacity:1}
+.catalog-facts .vfx-number,.offer-metrics .vfx-number,.up-fact-strip .vfx-number,.catalog-funding .vfx-number{display:inline;font:inherit;color:inherit;letter-spacing:inherit;margin:0;padding:0}
+@media(hover:hover) and (pointer:fine) and (prefers-reduced-motion:no-preference){
+ .catalog-card{transition:translate .55s cubic-bezier(.22,1,.36,1),box-shadow .55s,border-color .4s}
+ .catalog-card:hover{translate:0 -5px;border-color:var(--brand-blue);box-shadow:0 24px 65px #08365014}
+ .catalog-image-link img{scale:1;transition:scale 1s cubic-bezier(.22,1,.36,1)}
+ .catalog-card:hover .catalog-image-link img{scale:1.035}
+ .btn{transition:transform .35s cubic-bezier(.22,1,.36,1),box-shadow .35s,background .3s}
+ .btn:hover{transform:translateY(-3px);box-shadow:0 9px 24px #08365020}
+ .btn .icon,.arrow-link .icon{transition:translate .35s cubic-bezier(.22,1,.36,1)}
+ .btn:hover .icon,.arrow-link:hover .icon{translate:3px 0}
+ .btn:active{transform:translateY(0);box-shadow:none}
+ .site-footer a,.site-nav a{transition:color .3s}
+}
+.motion-paused .catalog-card,.motion-paused .btn,.motion-paused .catalog-image-link img{transition:none;translate:none;scale:1}
+.motion-paused .catalog-card::before{display:none}
+@media(prefers-reduced-motion:reduce){.catalog-card::before{display:none}.catalog-card,.catalog-image-link img,.btn,.btn .icon,.arrow-link .icon{transition:none!important;translate:none!important;scale:1!important}}
