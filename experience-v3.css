@@ -113,3 +113,7 @@ p,li,dd,blockquote,figcaption,.lead,.footnote{ text-wrap:pretty; }
  .site-header .nav-actions .btn{font-size:10px;padding:9px 8px;min-height:40px}
  .site-header .menu-toggle{width:32px;min-width:32px}
 }
+
+/* Align the access logo with the centered form's left edge. */
+.auth-main>.logo{margin-left:max(0px,calc((100% - 410px)/2))}
+@media(max-width:760px){.auth-main>.logo{margin-left:max(0px,calc((100% - 440px)/2))}}
