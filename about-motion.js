@@ -2,7 +2,7 @@
 export function mountAboutMotion(root){
  const host=root.querySelector('.site-header');if(!host)return ()=>{};
  const media=matchMedia('(prefers-reduced-motion: reduce)');
- let context,lenis,tick,discoveryTrigger;let selected=0;const controller=new AbortController();
+ let context,lenis,tick,discoveryTrigger,catalogContext;let selected=0;const controller=new AbortController();
  root.querySelector('.about-vision-link')?.addEventListener('click',event=>{event.preventDefault();const target=root.querySelector('#tokenhub-visao');if(lenis)lenis.scrollTo(target,{offset:-90});else target.scrollIntoView({behavior:media.matches?'instant':'smooth'});},{signal:controller.signal});
  const tabs=[...root.querySelectorAll('[data-discovery]')];
  const select=(index,focus=false)=>{if(index===selected){if(focus)tabs[index]?.focus();return;}selected=index;tabs.forEach((tab,i)=>{tab.setAttribute('aria-selected',String(i===index));tab.tabIndex=i===index?0:-1;const panel=root.querySelector(`#discovery-panel-${i}`);if(panel)panel.hidden=i!==index;});if(focus)tabs[index]?.focus();const panel=root.querySelector(`#discovery-panel-${index} .discovery-preview`);if(panel&&!media.matches)window.gsap?.fromTo(panel,{y:14,opacity:0},{y:0,opacity:1,duration:.35,clearProps:'all'});};
@@ -27,7 +27,9 @@ export function mountAboutMotion(root){
   for(const [id,key,degrees] of nodes){const t=tracks[key],angle=(t.angle+t.travel*orbitState.progress)*Math.PI/180,theta=degrees*Math.PI/180;const dx=t.rx*Math.cos(theta),dy=t.ry*Math.sin(theta);const x=260+dx*Math.cos(angle)-dy*Math.sin(angle),y=210+dx*Math.sin(angle)+dy*Math.cos(angle);orbit?.querySelector(`[data-orbit-node="${id}"]`)?.setAttribute('transform',`translate(${x} ${y})`);}
  };
  positionOrbits();
- const stop=()=>{context?.revert();context=null;discoveryTrigger=null;if(tick)window.gsap?.ticker.remove(tick);tick=null;lenis?.destroy();lenis=null;document.documentElement.classList.remove('about-smooth');orbitState.progress=0;positionOrbits();};
+ const stop=()=>{catalogContext?.revert();catalogContext=null;context?.revert();context=null;discoveryTrigger=null;if(tick)window.gsap?.ticker.remove(tick);tick=null;lenis?.destroy();lenis=null;document.documentElement.classList.remove('about-smooth');orbitState.progress=0;positionOrbits();};
+ const buildCatalog=()=>{catalogContext?.revert();catalogContext=null;const {gsap,ScrollTrigger}=window;if(media.matches||!gsap||!ScrollTrigger||!root.querySelector('.catalog-grid'))return;catalogContext=gsap.context(()=>{root.querySelectorAll('.catalog-card').forEach((card,i)=>{gsap.from(card,{y:36,opacity:0,duration:.85,delay:(i%2)*.08,ease:'power3.out',clearProps:'all',scrollTrigger:{trigger:card,start:'top 94%',once:true}});if(matchMedia('(min-width:761px) and (pointer:fine)').matches){const image=card.querySelector('.asset-photo');gsap.fromTo(image,{yPercent:-3},{yPercent:3,ease:'none',scrollTrigger:{trigger:card,start:'top bottom',end:'bottom top',scrub:1}});}});},root);ScrollTrigger.refresh();};
+ root.addEventListener('offers:updated',buildCatalog,{signal:controller.signal});
  const start=()=>{stop();const {gsap,ScrollTrigger,Lenis}=window;if(media.matches||!gsap||!ScrollTrigger)return;
  gsap.registerPlugin(ScrollTrigger);
  context=gsap.context(()=>{
@@ -50,7 +52,7 @@ export function mountAboutMotion(root){
  },root);
  // Keep touch scrolling native. Smooth wheel input only on fine-pointer devices.
  if(Lenis&&matchMedia('(hover:hover) and (pointer:fine)').matches){document.documentElement.classList.add('about-smooth');lenis=new Lenis({duration:1.05,smoothWheel:true});lenis.on('scroll',ScrollTrigger.update);tick=time=>lenis?.raf(time*1000);gsap.ticker.add(tick);}
- ScrollTrigger.refresh();
+ buildCatalog();ScrollTrigger.refresh();
  };
  const refresh=()=>{window.ScrollTrigger?.refresh();queueSteps();};root.querySelectorAll('details').forEach(el=>el.addEventListener('toggle',refresh,{signal:controller.signal}));root.querySelectorAll('img').forEach(el=>{if(!el.complete)el.addEventListener('load',refresh,{once:true,signal:controller.signal});});
  const onLoad=()=>start();if(document.readyState==='complete')start();else window.addEventListener('load',onLoad,{once:true,signal:controller.signal});
