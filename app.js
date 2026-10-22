@@ -1,4 +1,4 @@
-import {renderCompanies,mountCompanies} from './companies.js?v=benefits-scroll-v5';
+import {renderCompanies,mountCompanies} from './companies.js?v=connected-journey-v7';
 import {mountVfx} from './vfx.js?v=experience-vfx-v31';
 import {openUpGallery} from './up-gallery.js?v=gallery-v21';
 import {upOpportunity,upCard,upDetail,upPhotos} from './up.js?v=token-progress-v33';
