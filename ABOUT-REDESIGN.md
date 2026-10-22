@@ -31,3 +31,7 @@ Imagem interna substituída por assets/photos/about-team-real-v6.webp, editada a
 Topo: assets/photos/about-hero-polos-v7.webp, 1920 × 640. Edição integrada com banner aprovado como alvo e fotografia original como referência de identidades. Prompt: modificar somente as peças superiores para polos de piquê azul-marinho, símbolo oficial pequeno bordado em ciano, relevo de linha e iluminação coerente; preservar pessoas, textura fotográfica, cenário, enquadramento e degradê aprovados.
 
 Equipe: assets/photos/about-team-embroidery-v7.webp. Prompt de retoque localizado: remover completamente a marca visível na mulher da extrema esquerda e restaurar o tecido; retirar a marca inteira anterior da mulher ao centro e reposicionar a aplicação no peito esquerdo anatômico, com metade oculta pela silhueta do homem em primeiro plano; reduzir discretamente a marca do homem e conferir acabamento bordado; manter todos os demais elementos da fotografia. Os arquivos foram otimizados em WebP com qualidade 94.
+
+## Imagem fornecida e enquadramento aprovado
+
+Imagem interna substituída pelo arquivo 8c1dcd43-ab28-4c7b-9c59-1a170cd2f8a1.png enviado pelo usuário, exportado em WebP de qualidade 98, sem geração de imagem ou alteração de conteúdo. Desktop: transform translate(0%,-5.3758%) translate3d(0px,0px,0px), conforme o terceiro anexo. Removido o paralaxe exclusivo dessa fotografia, que sobrescrevia o enquadramento; demais animações preservadas. Mobile mantém recorte próprio sem deslocamento adicional para preservar os rostos.

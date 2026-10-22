@@ -19,7 +19,7 @@ export function mountAboutMotion(root){
  context=gsap.context(()=>{
   gsap.from('.about-hero-copy > *',{y:24,opacity:0,duration:.85,stagger:.09,ease:'power3.out',clearProps:'all'});
   root.querySelectorAll('[data-about-reveal]').forEach(element=>gsap.from(element,{y:36,opacity:0,duration:.85,ease:'power3.out',scrollTrigger:{trigger:element,start:'top 92%',once:true},clearProps:'all'}));
-  gsap.to('.about-team img',{yPercent:8,ease:'none',scrollTrigger:{trigger:'.about-team',start:'top bottom',end:'bottom top',scrub:1}});
+  // The team photo has a fixed, user-approved crop; do not overwrite its CSS transform.
   gsap.to(orbitState,{progress:1,ease:'none',onUpdate:positionOrbits,scrollTrigger:{trigger:'.about-purpose',start:'top bottom',end:'bottom top',scrub:1}});
  },root);
  // Keep touch scrolling native. Smooth wheel input only on fine-pointer devices.

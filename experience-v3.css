@@ -196,3 +196,7 @@ html.about-smooth{scroll-behavior:auto}html.lenis,html.lenis body{height:auto}.l
 /* Official SVG marks preserve the supplied geometry at every display size. */
 .brand-symbol{display:block;object-fit:contain;flex-shrink:0}
 .orbit-core .brand-symbol{width:64px;height:88px}
+
+/* Approved team framing: stable during scrolling and with reduced motion. */
+.about-team img{will-change:auto;transform:translate(0%,-5.3758%) translate3d(0px,0px,0px)}
+@media(max-width:760px){.about-team img{transform:none}}
