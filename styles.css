@@ -87,3 +87,7 @@
 .home-opportunities .home-offers-action .btn.btn-primary{background:var(--brand-blue);border-color:var(--brand-blue);color:#fff}
 .home-opportunities .home-offers-action .btn.btn-primary:hover{background:var(--cyan-dark);border-color:var(--cyan-dark);color:#fff}
 .home-opportunities .home-offers-action .btn.btn-primary:focus-visible{outline:3px solid var(--cyan-dark);outline-offset:4px}
+
+/* Numeração ampliada — jornada em quatro passos */
+.step-card .step-number{font-size:36px;line-height:1.05;letter-spacing:-.045em;font-weight:800;margin-bottom:22px;color:var(--cyan-dark)}
+@media(max-width:760px){.step-card .step-number{font-size:34px;margin-bottom:18px}}
