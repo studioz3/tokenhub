@@ -6,6 +6,19 @@ export function mountAboutMotion(root){
  root.querySelector('.about-vision-link')?.addEventListener('click',event=>{event.preventDefault();const target=root.querySelector('#tokenhub-visao');if(lenis)lenis.scrollTo(target,{offset:-90});else target.scrollIntoView({behavior:media.matches?'instant':'smooth'});},{signal:controller.signal});
  root.querySelectorAll('[data-up-jump]').forEach(link=>link.addEventListener('click',e=>{e.preventDefault();const target=root.querySelector('#'+link.dataset.upJump);if(lenis)lenis.scrollTo(target,{offset:-100});else target?.scrollIntoView({behavior:media.matches?'instant':'smooth'});},{signal:controller.signal}));
  window.addEventListener('up-gallery:toggle',event=>{if(event.detail)lenis?.stop();else lenis?.start();},{signal:controller.signal});
+ const film=root.querySelector('.up-video video');let filmObserver;
+ if(film){
+  const playButton=root.querySelector('[data-up-video-play]'),soundButton=root.querySelector('[data-up-video-sound]');
+  let visible=false,manualPause=false;
+  const syncFilm=()=>{playButton.textContent=film.paused?'Reproduzir':'Pausar';playButton.setAttribute('aria-label',film.paused?'Reproduzir vídeo':'Pausar vídeo');};
+  const playFilm=()=>{if(visible&&!document.hidden&&!manualPause)film.play().catch(()=>syncFilm());};
+  film.muted=true;
+  filmObserver=new IntersectionObserver(entries=>{visible=entries[0].isIntersecting;if(visible){if(!media.matches)playFilm();}else{film.pause();manualPause=false;}},{threshold:.3});filmObserver.observe(film);
+  playButton.addEventListener('click',()=>{if(film.paused){manualPause=false;film.play().catch(()=>syncFilm());}else{manualPause=true;film.pause();}},{signal:controller.signal});
+  soundButton.addEventListener('click',()=>{film.muted=!film.muted;soundButton.textContent=film.muted?'Ativar som':'Silenciar';soundButton.setAttribute('aria-pressed',String(!film.muted));},{signal:controller.signal});
+  film.addEventListener('play',syncFilm,{signal:controller.signal});film.addEventListener('pause',syncFilm,{signal:controller.signal});
+  document.addEventListener('visibilitychange',()=>{if(document.hidden)film.pause();else if(!media.matches)playFilm();},{signal:controller.signal});
+ }
  const tabs=[...root.querySelectorAll('[data-discovery]')];
  const select=(index,focus=false)=>{if(index===selected){if(focus)tabs[index]?.focus();return;}selected=index;tabs.forEach((tab,i)=>{tab.setAttribute('aria-selected',String(i===index));tab.tabIndex=i===index?0:-1;const panel=root.querySelector(`#discovery-panel-${i}`);if(panel)panel.hidden=i!==index;});if(focus)tabs[index]?.focus();const panel=root.querySelector(`#discovery-panel-${index} .discovery-preview`);if(panel&&!media.matches)window.gsap?.fromTo(panel,{y:14,opacity:0},{y:0,opacity:1,duration:.35,clearProps:'all'});};
  tabs.forEach((tab,i)=>{tab.addEventListener('click',()=>jumpDiscovery(i),{signal:controller.signal});tab.addEventListener('keydown',e=>{let next;if(e.key==='ArrowDown'||e.key==='ArrowRight')next=(i+1)%tabs.length;if(e.key==='ArrowUp'||e.key==='ArrowLeft')next=(i+tabs.length-1)%tabs.length;if(e.key==='Home')next=0;if(e.key==='End')next=tabs.length-1;if(next!==undefined){e.preventDefault();jumpDiscovery(next,true);}},{signal:controller.signal});});
@@ -83,5 +96,5 @@ export function mountAboutMotion(root){
  const refresh=()=>{window.ScrollTrigger?.refresh();queueSteps();};root.querySelectorAll('details').forEach(el=>el.addEventListener('toggle',refresh,{signal:controller.signal}));root.querySelectorAll('img').forEach(el=>{if(!el.complete)el.addEventListener('load',refresh,{once:true,signal:controller.signal});});
  const onLoad=()=>start();if(document.readyState==='complete')start();else window.addEventListener('load',onLoad,{once:true,signal:controller.signal});
  media.addEventListener('change',start,{signal:controller.signal});
- return ()=>{controller.abort();for(const animation of bubbleAnimations.values())animation.cancel();if(stepFrame)cancelAnimationFrame(stepFrame);stop();};
+ return ()=>{filmObserver?.disconnect();film?.pause();controller.abort();for(const animation of bubbleAnimations.values())animation.cancel();if(stepFrame)cancelAnimationFrame(stepFrame);stop();};
 }
