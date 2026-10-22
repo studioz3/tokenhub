@@ -13,7 +13,18 @@ export function mountAboutMotion(root){
   const syncFilm=()=>{playButton.textContent=film.paused?'Reproduzir':'Pausar';playButton.setAttribute('aria-label',film.paused?'Reproduzir vídeo':'Pausar vídeo');};
   const playFilm=()=>{if(visible&&!document.hidden&&!manualPause)film.play().catch(()=>syncFilm());};
   film.muted=true;
-  filmObserver=new IntersectionObserver(entries=>{visible=entries[0].isIntersecting;if(visible){if(!media.matches)playFilm();}else{film.pause();manualPause=false;}},{threshold:.3});filmObserver.observe(film);
+  let expandedFilm=false;
+  const restoreFilm=()=>{if(!expandedFilm)return;expandedFilm=false;film.controls=false;film.muted=true;soundButton.textContent='Ativar som';soundButton.setAttribute('aria-pressed','false');if(!visible)film.pause();};
+  root.querySelector('[data-up-video-fullscreen]')?.addEventListener('click',()=>{
+   expandedFilm=true;manualPause=false;film.muted=false;film.controls=true;soundButton.textContent='Silenciar';soundButton.setAttribute('aria-pressed','true');
+   film.play().catch(()=>syncFilm());
+   if(film.requestFullscreen)film.requestFullscreen().catch(()=>{film.controls=true;});
+   else if(film.webkitEnterFullscreen)film.webkitEnterFullscreen();
+   else{film.controls=true;film.scrollIntoView({block:'center'});}
+  },{signal:controller.signal});
+  document.addEventListener('fullscreenchange',()=>{if(!document.fullscreenElement)restoreFilm();},{signal:controller.signal});
+  film.addEventListener('webkitendfullscreen',restoreFilm,{signal:controller.signal});
+  filmObserver=new IntersectionObserver(entries=>{visible=entries[0].isIntersecting;if(visible){if(!media.matches)playFilm();}else if(!expandedFilm){film.pause();manualPause=false;}},{threshold:.3});filmObserver.observe(film);
   playButton.addEventListener('click',()=>{if(film.paused){manualPause=false;film.play().catch(()=>syncFilm());}else{manualPause=true;film.pause();}},{signal:controller.signal});
   soundButton.addEventListener('click',()=>{film.muted=!film.muted;soundButton.textContent=film.muted?'Ativar som':'Silenciar';soundButton.setAttribute('aria-pressed',String(!film.muted));},{signal:controller.signal});
   film.addEventListener('play',syncFilm,{signal:controller.signal});film.addEventListener('pause',syncFilm,{signal:controller.signal});
