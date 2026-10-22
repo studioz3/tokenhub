@@ -189,3 +189,6 @@ html.about-smooth{scroll-behavior:auto}html.lenis,html.lenis body{height:auto}.l
 
 /* Preserve the headroom of the supplied real photograph on wide screens. */
 @media(min-width:761px){.about-hero-image img{object-position:center top}}
+
+/* Keep all three people visible in the real team photograph on phones. */
+@media(max-width:760px){.about-team{aspect-ratio:1.8}.about-team img{object-position:center 35%}.about-team-caption{font-size:22px;left:18px;bottom:16px}}

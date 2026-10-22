@@ -21,3 +21,7 @@ Validação da revisão: banner de 0 a 1920 px no desktop; arquivo com dimensõe
 ## Fotografia fornecida pelo usuário
 
 Topo substituído por assets/photos/about-hero-real-v5.webp (1920 × 640), editado a partir de 45420.jpg e do símbolo oficial anexado. Edição pela ferramenta integrada de imagens, com pedido de preservar pessoas, rostos, expressões, roupas e iluminação; aplicar pequenos símbolos bordados nas roupas, estender o quadro e integrar degradê preto suave à esquerda. Prompt: composição fotográfica fiel à imagem original, pessoas e tablet à direita, sem recriar ou estilizar rostos, sem textos, emblema oficial azul-marinho na blusa cinza e ciano na camisa azul. Foto anterior do topo deixa de ser utilizada; demais seções mantidas.
+
+## Fotografia real da equipe
+
+Imagem interna substituída por assets/photos/about-team-real-v6.webp, editada a partir de 548890.jpg. Prompt da ferramenta integrada: preservar as três pessoas da fotografia, identidades, expressões, poses, mãos, dispositivos, ambiente e luz; modificar apenas as peças superiores para polos de piquê azul-marinho #083650 e aplicar bordado pequeno em ciano #00A2D4 usando o símbolo oficial fornecido, incluindo o aro espesso e as extensões diagonais, sem substituí-lo por círculo genérico. Não adicionar degradê à fotografia; a legenda e sua proteção de contraste continuam no CSS. Enquadramento mobile ajustado para mostrar os três rostos.
