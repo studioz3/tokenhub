@@ -1,4 +1,4 @@
-import {upOpportunity,upCard,upDetail,upPhotos} from './up.js?v=up-v18';
+import {upOpportunity,upCard,upDetail,upPhotos} from './up.js?v=up-concept-v20';
 import {offers,faq,transactions,articles} from './data.js';
 import {renderSimulator,updateSimulator} from './simulator.js';
 import {mountMotion} from './motion.js';
