@@ -280,3 +280,8 @@ html.up-gallery-open{overflow:hidden}dialog.up-gallery-dialog{width:min(1320px,c
 
 .page-hero-opportunities h1{font-size:clamp(34px,3.1vw,46px);max-width:700px;line-height:1.12}
 @media(max-width:760px){.page-hero-opportunities h1{font-size:clamp(30px,7.2vw,40px)}}
+
+/* Match About hero type scale and brand-blue emphasis. */
+.page-hero-opportunities h1{font-size:clamp(38px,3.8vw,57px);line-height:1.12;max-width:800px}.page-hero-opportunities h1 em{font-style:normal;color:#67d8f0}
+@media(max-width:1000px) and (min-width:761px){.page-hero-opportunities h1{font-size:38px}}
+@media(max-width:760px){.page-hero-opportunities h1{font-size:clamp(35px,8vw,49px)}}
