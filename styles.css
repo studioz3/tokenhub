@@ -9,3 +9,25 @@
 @media(max-width:390px){.hero h1{font-size:45px}.hero .btn{padding:12px 16px;font-size:12px}.hero-foot{gap:12px;font-size:9px}.site-header .logo{width:135px}.container{padding:0 18px}.app-content{padding-left:16px;padding-right:16px}.app-topbar{padding:0 12px}.app-topbar .breadcrumbs span{display:none}.asset-note{min-width:140px}.hero-visual{min-height:345px}.note-a{top:30px}.note-b{bottom:40px}.note-c{bottom:0}.grid4{gap:20px}.stat .stat-value{font-size:23px}}
 @media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}*,*:before,*:after{transition:none!important;animation:none!important}.offer-card:hover,.btn:hover{transform:none}}
 @media print{body{background:#fff}.demo-bar,.sidebar,.app-topbar,.app-heading,.app-bottom-note,.skip,#toast,dialog{display:none!important}.app-layout{display:block}.app-content{padding:0}.report-page{border:0;max-width:none;padding:0;margin:0}.report-page .watermark{color:#000}.report-page table{break-inside:avoid}}
+
+
+/* Home — três vantagens da tokenização */
+.token-benefits{background:#f6f9fa;padding:76px 0 66px;border-bottom:1px solid #e1eaee}
+.token-benefits-intro{display:grid;grid-template-columns:minmax(0,1.45fr) minmax(240px,.7fr);align-items:end;gap:64px;margin-bottom:36px}
+.token-benefits-intro .eyebrow{display:block;color:#008cb6;font-size:11px;font-weight:700;letter-spacing:.13em;text-transform:uppercase;margin-bottom:17px}
+.token-benefits-intro h2{max-width:710px;font-size:clamp(30px,3.35vw,49px);line-height:1.13;letter-spacing:-.045em;color:#0b2c3f}
+.token-benefits-intro h2 em{font-style:normal;color:#009fc9}
+.token-benefits-intro>p{max-width:365px;font-size:14px;line-height:1.85;color:#526b79;padding-bottom:5px}
+.token-benefits-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px}
+.token-benefit{display:flex;flex-direction:column;min-width:0;min-height:288px;padding:27px 28px 30px;background:#fff;border:1px solid #e0e9ee;border-top:3px solid #00a2d4;border-radius:8px;transition:transform .3s ease,box-shadow .3s ease,border-color .3s ease}
+.token-benefit:hover{transform:translateY(-4px);box-shadow:0 18px 38px rgba(8,54,80,.09);border-color:#c9e1e9;border-top-color:#00a2d4}
+.token-benefit-top{display:flex;justify-content:space-between;align-items:center;margin-bottom:36px;gap:12px}
+.token-benefit-index{font-size:10px;font-weight:800;letter-spacing:.13em;color:#65808d}
+.token-benefit-icon{display:grid;place-items:center;width:46px;height:46px;flex:none;border-radius:12px;background:#eaf8fc;color:#009fc9}
+.token-benefit-icon .icon{width:22px;height:22px}
+.token-benefit h3{font-size:clamp(20px,1.7vw,25px);line-height:1.2;letter-spacing:-.035em;color:#0d3044;margin-bottom:13px;max-width:310px}
+.token-benefit p{font-size:13px;line-height:1.8;color:#607583}
+.token-benefits-disclaimer{margin-top:18px;font-size:11px;line-height:1.65;color:#748894}
+@media(max-width:900px){.token-benefits{padding:58px 0 54px}.token-benefits-intro{gap:24px;grid-template-columns:1fr;margin-bottom:27px}.token-benefits-intro>p{max-width:650px}.token-benefits-grid{gap:12px}.token-benefit{padding:23px 20px;min-height:300px}.token-benefit-top{margin-bottom:28px}.token-benefit h3{font-size:21px}}
+@media(max-width:650px){.token-benefits{padding:49px 0 46px}.token-benefits-intro h2{font-size:34px}.token-benefits-intro>p{font-size:13px}.token-benefits-grid{grid-template-columns:1fr;gap:12px}.token-benefit{min-height:0;padding:23px 23px 25px}.token-benefit-top{margin-bottom:19px}.token-benefit h3{font-size:22px;max-width:none}.token-benefit p{font-size:13px}.token-benefits-disclaimer{margin-top:17px}}
+@media(prefers-reduced-motion:reduce){.token-benefit{transition:none}.token-benefit:hover{transform:none}}
