@@ -124,3 +124,13 @@ h1,h2,h3,h4,h5,h6,.hero h1,.hero h1 em,.hero-title-line{font-weight:800}
 /* Larger, more legible numbered process steps. */
 .process-item::before{font-size:32px;line-height:1.15;padding-top:0;font-variant-numeric:lining-nums tabular-nums}
 @media(max-width:760px){.process-item::before{font-size:28px}}
+
+/* About: human team photograph, with a gentle dark treatment. */
+.page-hero-about{--page-art:url("assets/photos/header-about-team.webp")}
+.page-hero-about::before{
+ background-image:linear-gradient(90deg,#000 0%,#000 38%,rgba(0,0,0,.68) 57%,rgba(0,0,0,.10) 78%,rgba(0,0,0,.08)),var(--page-art);
+ background-size:cover,auto 110%;
+ background-position:center,right top;
+ background-repeat:no-repeat;
+}
+@media(max-width:760px){.page-hero-about .mobile-banner-art img{filter:brightness(.94)}}
