@@ -251,3 +251,8 @@ html.about-smooth{scroll-behavior:auto}html.lenis,html.lenis body{height:auto}.l
 @media(max-width:760px){.opportunities-catalog{padding:60px 0 65px}.catalog-heading{display:block;margin-bottom:35px}.catalog-heading h2{font-size:40px}.catalog-heading>p{max-width:100%;margin-top:25px;font-size:15px}.catalog-grid{grid-template-columns:1fr;gap:35px}.catalog-image{aspect-ratio:1.4}.catalog-copy{padding:27px 24px 0}.catalog-card h3{font-size:34px}.catalog-description{min-height:0;margin-bottom:24px}.catalog-facts dd{font-size:25px}.catalog-facts{padding:22px 0}.catalog-return{padding:20px 0;gap:10px}.opportunities-catalog .filters{gap:8px}.opportunities-catalog .chip{font-size:12px;padding:10px 15px;min-height:42px}.opportunities-catalog .toolbar{gap:12px}.opportunities-catalog .tool-select{width:100%;flex-basis:100%}.catalog-image-caption{font-size:9px;left:18px;bottom:16px}.catalog-category{font-size:10px}.catalog-save{height:42px;width:42px}}
 @media(max-width:360px){.catalog-copy{padding:24px 20px 0}.catalog-card h3{font-size:30px}.catalog-facts{grid-template-columns:1fr 1fr .7fr;gap:9px}.catalog-facts dd{font-size:22px}.catalog-facts dd small{display:block;margin-top:5px}.catalog-heading h2{font-size:36px}}
 @media(prefers-reduced-motion:reduce){.catalog-card,.catalog-link-arrow{transition:none}}
+
+/* Keep answer content clipped during reversible accordion transitions. */
+.question-bubble{box-sizing:border-box;overflow:clip}
+.question-bubble:has(>summary[aria-expanded='false']) .question-plus{transform:rotate(0);background:transparent}
+@supports (overflow:clip){.question-bubble{overflow:visible;overflow:clip;overflow-clip-margin:18px}}

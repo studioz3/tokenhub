@@ -16,7 +16,7 @@ export function mountAboutMotion(root){
  const activate=index=>{stepNodes.forEach((node,i)=>node.classList.toggle('is-active',i===index));stepLinks.forEach((link,i)=>{if(i===index)link.setAttribute('aria-current','step');else link.removeAttribute('aria-current');});};activate(0);
  // Derive the active step from current geometry, including reverse scroll and large jumps.
  const syncSteps=()=>{if(!stepNodes.length)return;const readingLine=innerHeight*.5;let index=0;stepNodes.forEach((node,i)=>{if(node.getBoundingClientRect().top<=readingLine)index=i;});activate(index);const first=stepNodes[0].getBoundingClientRect(),last=stepNodes.at(-1).getBoundingClientRect();const progress=Math.min(1,Math.max(0,(readingLine-first.top)/(last.top-first.top||1)));const bar=root.querySelector('.how-progress > span');if(bar)bar.style.transform=`scaleX(${.2+.8*progress})`;};
- let stepFrame;const queueSteps=()=>{if(stepFrame)return;stepFrame=requestAnimationFrame(()=>{stepFrame=null;syncSteps();if(!discoveryTrigger)syncDiscovery();});};
+ let stepFrame;const queueSteps=()=>{if(stepFrame)return;stepFrame=requestAnimationFrame(()=>{stepFrame=null;syncSteps();syncDiscovery();});};
  window.addEventListener('scroll',queueSteps,{passive:true,signal:controller.signal});window.addEventListener('resize',queueSteps,{signal:controller.signal});syncSteps();syncDiscovery();
  // One geometry model drives each ellipse, its markers and its upright labels.
  const orbit=root.querySelector('.about-orbit'),orbitState={progress:0};
@@ -54,8 +54,32 @@ export function mountAboutMotion(root){
  if(Lenis&&matchMedia('(hover:hover) and (pointer:fine)').matches){document.documentElement.classList.add('about-smooth');lenis=new Lenis({duration:1.05,smoothWheel:true});lenis.on('scroll',ScrollTrigger.update);tick=time=>lenis?.raf(time*1000);gsap.ticker.add(tick);}
  buildCatalog();ScrollTrigger.refresh();
  };
+ // Animate native details without hiding the answer before the closing transition ends.
+ const bubbleAnimations=new Map();
+ root.querySelectorAll('.question-bubble').forEach(bubble=>{
+  const summary=bubble.querySelector('summary'),answer=bubble.querySelector('.question-answer');
+  if(!summary||!answer)return;
+  let expanded=bubble.open;
+  summary.setAttribute('aria-expanded',String(expanded));
+  summary.addEventListener('click',event=>{
+   if(media.matches)return;
+   event.preventDefault();
+   const from=bubble.getBoundingClientRect().height;
+   bubbleAnimations.get(bubble)?.cancel();
+   expanded=!expanded;summary.setAttribute('aria-expanded',String(expanded));
+   bubble.classList.toggle('is-closing',!expanded);
+   bubble.open=true;
+   const to=expanded?summary.getBoundingClientRect().height+answer.getBoundingClientRect().height:summary.getBoundingClientRect().height;
+   const animation=bubble.animate([{height:`${from}px`},{height:`${to}px`}],{duration:480,easing:'cubic-bezier(.22,1,.36,1)',fill:'both'});
+   const textAnimation=answer.animate([{opacity:expanded?0:1,transform:expanded?'translateY(8px)':'translateY(0)'},{opacity:expanded?1:0,transform:expanded?'translateY(0)':'translateY(4px)'}],{duration:expanded?380:220,easing:'ease-out',fill:'both'});
+   bubbleAnimations.set(bubble,animation);
+   animation.onfinish=()=>{bubble.open=expanded;bubble.classList.remove('is-closing');animation.cancel();textAnimation.cancel();bubbleAnimations.delete(bubble);refresh();};
+   animation.oncancel=()=>textAnimation.cancel();
+  },{signal:controller.signal});
+  bubble.addEventListener('toggle',()=>{if(!bubbleAnimations.has(bubble)){expanded=bubble.open;summary.setAttribute('aria-expanded',String(expanded));}},{signal:controller.signal});
+ });
  const refresh=()=>{window.ScrollTrigger?.refresh();queueSteps();};root.querySelectorAll('details').forEach(el=>el.addEventListener('toggle',refresh,{signal:controller.signal}));root.querySelectorAll('img').forEach(el=>{if(!el.complete)el.addEventListener('load',refresh,{once:true,signal:controller.signal});});
  const onLoad=()=>start();if(document.readyState==='complete')start();else window.addEventListener('load',onLoad,{once:true,signal:controller.signal});
  media.addEventListener('change',start,{signal:controller.signal});
- return ()=>{controller.abort();if(stepFrame)cancelAnimationFrame(stepFrame);stop();};
+ return ()=>{controller.abort();for(const animation of bubbleAnimations.values())animation.cancel();if(stepFrame)cancelAnimationFrame(stepFrame);stop();};
 }
