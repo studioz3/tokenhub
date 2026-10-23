@@ -1,8 +1,8 @@
-import {mountUpConditions} from './up-conditions.js?v=up-desk-v1';
+import {mountUpConditions} from './up-conditions.js?v=up-morph-v2';
 import {renderCompanies,mountCompanies} from './companies.js?v=journey-size-v15';
 import {mountVfx} from './vfx.js?v=experience-vfx-v31';
 import {openUpGallery} from './up-gallery.js?v=gallery-v21';
-import {upOpportunity,upCard,upDetail,upPhotos} from './up.js?v=up-desk-v1';
+import {upOpportunity,upCard,upDetail,upPhotos} from './up.js?v=up-morph-v2';
 import {offers,faq,transactions,articles} from './data.js';
 import {renderSimulator,updateSimulator} from './simulator.js';
 import {mountMotion} from './motion.js';
@@ -148,6 +148,7 @@ document.addEventListener('submit',e=>{const form=e.target.closest('form[data-fo
 });
 window.addEventListener('hashchange',()=>{const navigate=()=>{state.detailTab='Visão geral';render();window.scrollTo(0,0);document.querySelector('#main')?.focus({preventScroll:true});};if(document.startViewTransition&&!matchMedia('(prefers-reduced-motion: reduce)').matches)document.startViewTransition(navigate);else navigate();});
 render();
+
 
 
 
