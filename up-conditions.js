@@ -11,41 +11,48 @@ export function mountUpConditions(root){
  const enter=(element,x)=>{if(reduced.matches)return;if(window.gsap){const tween=window.gsap.fromTo(element,{x,opacity:0},{x:0,opacity:1,duration:.45,ease:'power3.out',clearProps:'transform,opacity',onComplete:()=>tweens.delete(tween)});tweens.add(tween);}else{const animation=element.animate([{opacity:0,transform:`translateX(${x}px)`},{opacity:1,transform:'translateX(0)'}],{duration:350,easing:'cubic-bezier(.22,1,.36,1)'});animation.finished.catch(()=>{});}};
  const setLayout=()=>{page.classList.toggle('up-conditions-expanded',(docked?wasOpenBeforeDock:panel.open)&&desktop.matches);launcher.hidden=panel.open||docked;launcher.setAttribute('aria-expanded',String(panel.open));document.documentElement.classList.toggle('up-conditions-modal-open',panel.open&&!desktop.matches&&!docked);};
  const show=(focus=true)=>{if(disposed||panel.open)return;desktop.matches?panel.show():panel.showModal();setLayout();enter(panel,desktop.matches?28:0);if(focus)closeButton.focus({preventScroll:true});};
- const hide=(persist=true,focus=true)=>{if(docked)return;if(persist){userCollapsed=true;remember();}if(panel.open)panel.close();setLayout();enter(launcher,18);if(focus)launcher.focus({preventScroll:true});};
+ const hide=(persist=true,focus=true)=>{if(docked)return;if(persist){userCollapsed=true;remember();}if(panel.open)panel.close();setLayout();enter(launcher,18);if(focus)launcher.focus({preventScroll:true});queueMicrotask(queueDock);};
  launcher.addEventListener('click',()=>{userCollapsed=false;remember();show();},{signal});closeButton.addEventListener('click',()=>hide(),{signal});
  panel.addEventListener('cancel',event=>{event.preventDefault();hide();},{signal});
  panel.addEventListener('click',event=>{if(event.target!==panel||desktop.matches)return;const box=panel.getBoundingClientRect();if(event.clientX<box.left||event.clientX>box.right||event.clientY<box.top||event.clientY>box.bottom)hide();},{signal});
  document.addEventListener('keydown',event=>{if(event.key==='Escape'&&!docked&&desktop.matches&&panel.open&&!document.querySelector('dialog:modal')){event.preventDefault();hide();}},{signal});
  panel.querySelector('[data-up-conditions-details]').addEventListener('click',()=>{if(!desktop.matches)hide(false,false);const target=page.querySelector('#up-token-example');window.scrollTo({top:target.getBoundingClientRect().top+scrollY-100,behavior:reduced.matches?'instant':'smooth'});target.tabIndex=-1;target.focus({preventScroll:true});},{signal});
- const updateResult=()=>{if(!quantity.validity.valid){panel.querySelector('[data-up-token-result]').textContent='Informe uma quantidade inteira entre 1 e 7.500 tokens.';return;}const count=Number(quantity.value),capital=count*100;panel.querySelector('[data-up-token-result]').innerHTML=`<span><span>Valor simulado</span><strong>${money(capital)}</strong></span><span><span>Valor final em 24 meses</span><strong>${money(capital*1.14)}</strong></span><span class="up-token-gain"><span>Ganho no cenário</span><strong>${money(capital*.14)}</strong></span>`;};
- toggle.addEventListener('click',()=>{if(docked){quantity.focus({preventScroll:true});calculator.scrollIntoView({block:'center',behavior:reduced.matches?'instant':'smooth'});return;}const open=calculator.hidden;calculator.hidden=!open;toggle.setAttribute('aria-expanded',String(open));toggle.innerHTML=open?'Fechar simulação ↑':'Simular aplicação →';if(open){updateResult();quantity.focus({preventScroll:true});calculator.scrollIntoView({block:'nearest',behavior:reduced.matches?'instant':'smooth'});}},{signal});
+ const updateResult=()=>{if(!quantity.value||!quantity.validity.valid){panel.querySelector('[data-up-token-result]').textContent='Informe uma quantidade inteira entre 1 e 7.500 tokens.';return;}const count=Number(quantity.value),capital=count*100;panel.querySelector('[data-up-token-result]').innerHTML=`<span><span>Valor simulado</span><strong>${money(capital)}</strong></span><span><span>Valor final em 24 meses</span><strong>${money(capital*1.14)}</strong></span><span class="up-token-gain"><span>Ganho no cenário</span><strong>${money(capital*.14)}</strong></span>`;};
+ toggle.addEventListener('click',()=>{if(docked){calculator.scrollIntoView({block:'nearest',behavior:'instant'});quantity.focus({preventScroll:true});return;}const open=calculator.hidden;calculator.hidden=!open;toggle.setAttribute('aria-expanded',String(open));toggle.innerHTML=open?'Fechar simulação ↑':'Simular aplicação →';if(open){updateResult();calculator.scrollIntoView({block:'nearest',behavior:'instant'});quantity.focus({preventScroll:true});}},{signal});
  panel.querySelector('[data-up-token-calculator]').addEventListener('submit',e=>{e.preventDefault();updateResult();},{signal});quantity.addEventListener('input',updateResult,{signal});
  for(const [selector,delta] of [['[data-up-token-minus]',-1],['[data-up-token-plus]',1]])panel.querySelector(selector).addEventListener('click',()=>{quantity.value=String(Math.min(7500,Math.max(1,(Number(quantity.value)||1)+delta)));updateResult();},{signal});
  desktop.addEventListener('change',()=>{if(docked){setLayout();return;}const wasOpen=panel.open;if(wasOpen)panel.close();setLayout();if(desktop.matches&&!userCollapsed)show(false);},{signal});
  if(desktop.matches&&!userCollapsed){const previous=document.activeElement;show(false);if(panel.contains(document.activeElement))previous?.focus?.({preventScroll:true});}else setLayout();
 
- // FLIP the same live panel between the floating rail and its final in-page home.
- const transition=(before,animate)=>{
-  morphTween?.kill?.();morphTween?.cancel?.();panel.style.removeProperty('transform');panel.style.removeProperty('opacity');
-  if(!animate||reduced.matches||!before?.width)return;
-  const after=panel.getBoundingClientRect(),from={x:before.left-after.left,y:before.top-after.top,scaleX:before.width/after.width,scaleY:before.height/after.height,transformOrigin:'top left'};
-  if(window.gsap)morphTween=window.gsap.fromTo(panel,from,{x:0,y:0,scaleX:1,scaleY:1,duration:.9,ease:'power3.inOut',clearProps:'transform,transformOrigin'});
-  else{morphTween=panel.animate([{transform:`translate(${from.x}px,${from.y}px) scale(${from.scaleX},${from.scaleY})`,transformOrigin:'top left'},{transform:'none',transformOrigin:'top left'}],{duration:700,easing:'cubic-bezier(.65,0,.35,1)'});morphTween.finished.catch(()=>{});}
+ // Reveal at the destination at native size: never scale text or live controls.
+ const transition=(_before,animate)=>{
+  morphTween?.kill?.();morphTween?.cancel?.();
+  for(const element of [panel,...panel.children]){element.style.removeProperty('transform');element.style.removeProperty('opacity');}
+  if(!animate||reduced.matches)return;
+  const targets=docked?[panel.querySelector('.up-conditions-head'),panel.querySelector('.up-conditions-scroll'),panel.querySelector('.up-conditions-actions')]:[panel];
+  if(window.gsap)morphTween=window.gsap.fromTo(targets,{y:desktop.matches?18:10,opacity:0},{y:0,opacity:1,duration:.48,stagger:.07,ease:'power2.out',clearProps:'transform,opacity'});
+  else{morphTween=panel.animate([{opacity:0,transform:'translateY(12px)'},{opacity:1,transform:'none'}],{duration:360,easing:'ease-out'});morphTween.finished.catch(()=>{});}
  };
  const dockPanel=(animate=true)=>{
   if(docked||disposed||!dock)return;const before=panel.open?panel.getBoundingClientRect():null,focused=document.activeElement;
   wasOpenBeforeDock=panel.open;calculatorWasOpen=!calculator.hidden;
   if(panel.open)panel.close();docked=true;dock.append(panel);panel.classList.add('is-docked');finale.classList.add('is-docked');panel.setAttribute('role','region');panel.show();calculator.hidden=false;toggle.setAttribute('aria-expanded','true');toggle.textContent='Ajustar minha simulação →';updateResult();setLayout();
-  if(panel.contains(document.activeElement)&&focused!==document.body&&focused?.isConnected)focused.focus({preventScroll:true});
-  transition(before,animate);if(!before)enter(panel,0);
+  if(focused?.isConnected&&document.activeElement!==focused){if(focused===document.body)document.activeElement?.blur();else focused.focus({preventScroll:true});}
+  transition(before,animate);
  };
  const undockPanel=(animate=true)=>{
   if(!docked||disposed)return;const before=panel.getBoundingClientRect(),focused=document.activeElement;panel.close();docked=false;page.insertBefore(panel,launcher);panel.classList.remove('is-docked');finale.classList.remove('is-docked');panel.removeAttribute('role');calculator.hidden=!calculatorWasOpen;toggle.setAttribute('aria-expanded',String(calculatorWasOpen));toggle.textContent=calculatorWasOpen?'Fechar simulação ↑':'Simular aplicação →';
   if(wasOpenBeforeDock&&desktop.matches){panel.show();setLayout();transition(before,animate);if(focused?.isConnected)focused.focus({preventScroll:true});}else{setLayout();enter(launcher,18);if(panel.contains(focused))launcher.focus({preventScroll:true});}
  };
- const syncDock=()=>{frame=null;if(!finale||disposed)return;const top=finale.getBoundingClientRect().top;if(!docked&&top<=innerHeight*.72)dockPanel();else if(docked&&top>innerHeight*.86)undockPanel();};
+ reduced.addEventListener('change',()=>{if(reduced.matches){morphTween?.kill?.();morphTween?.cancel?.();for(const element of [panel,...panel.children]){element.style.removeProperty('transform');element.style.removeProperty('opacity');}}},{signal});
+ const syncDock=()=>{frame=null;if(!finale||disposed)return;// Do not move a form while it is being used, or a mobile dialog while open.
+  if(document.activeElement===quantity||(!desktop.matches&&panel.open&&!docked))return;
+  const top=finale.getBoundingClientRect().top;if(!docked&&top<=innerHeight*.72)dockPanel();else if(docked&&top>innerHeight*.86)undockPanel();};
  const queueDock=()=>{if(!frame)frame=requestAnimationFrame(syncDock);};
+ panel.addEventListener('focusout',()=>queueMicrotask(queueDock),{signal});
  window.addEventListener('scroll',queueDock,{passive:true,signal});window.addEventListener('resize',queueDock,{signal});
+ const syncViewport=()=>{const viewport=window.visualViewport;panel.style.setProperty('--up-visible-height',`${viewport?.height||innerHeight}px`);panel.style.setProperty('--up-viewport-bottom',`${Math.max(0,innerHeight-(viewport?.height||innerHeight)-(viewport?.offsetTop||0))}px`);};
+ syncViewport();window.visualViewport?.addEventListener('resize',syncViewport,{signal});window.visualViewport?.addEventListener('scroll',syncViewport,{signal});
  const setupDock=()=>{if(disposed||!finale)return;if(window.gsap&&window.ScrollTrigger){window.gsap.registerPlugin(window.ScrollTrigger);trigger=window.ScrollTrigger.create({id:'up-token-metamorphosis',trigger:finale,start:'top 72%',end:'bottom top',onUpdate:queueDock,onRefresh:queueDock});}queueDock();};
  if(document.readyState==='complete')setupDock();else window.addEventListener('load',setupDock,{once:true,signal});
  return ()=>{disposed=true;controller.abort();cancelAnimationFrame(frame);trigger?.kill();morphTween?.kill?.();morphTween?.cancel?.();for(const tween of tweens)tween.kill();if(panel.open)panel.close();document.documentElement.classList.remove('up-conditions-modal-open');page.classList.remove('up-conditions-expanded');};

@@ -1,4 +1,4 @@
-import {renderUpConditions} from './up-conditions.js?v=up-morph-v2';
+import {renderUpConditions} from './up-conditions.js?v=up-handoff-v3';
 export const upOpportunity={id:'up-sorocaba',name:'Residencial UP Sorocaba',category:'Imobiliário',min:100,rate:(1.14**.5-1)*100,term:24,remaining:Infinity};
 export const upPhotos=[['up-lote-01-viva.webp','Vista aérea do Lote 01, Quadra B'],['up-lote-rua-viva.webp','Frente para a rua interna'],['up-terreno-vista-viva.webp','Terreno e entorno'],['up-portaria-viva.webp','Acesso ao Residencial UP'],['up-lazer-aereo-viva.webp','Área de lazer vista de cima'],['up-quadra-viva.webp','Quadra poliesportiva'],['up-caixa-dagua-viva.webp','Reservatório do residencial'],['up-residencial-viva.webp','Vista geral do empreendimento']];
 const amenities=[['up-est-portaria-viva.webp','Portaria blindada'],['up-est-salao-viva.webp','Salão de festas e piscina'],['up-est-academia-viva.webp','Academia'],['up-est-quadra-viva.webp','Quadra poliesportiva'],['up-est-playground-viva.webp','Playground'],['up-est-convivencia-viva.webp','Convivência e churrasqueira']];
