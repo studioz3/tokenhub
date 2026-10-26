@@ -93,3 +93,15 @@
 .tj-intro-steps li>span{width:50px;height:50px;font-size:20px;line-height:1;font-weight:800}
 .tj-intro-steps li{gap:20px;align-items:center}
 @media(max-width:600px){.tj-intro-steps li>span{width:46px;height:46px;font-size:18px}}
+
+/* Account opening fields and inline guidance. */
+.tj-form{display:grid;gap:18px;margin-top:26px}
+.tj-field{display:grid;gap:7px;min-width:0}
+.tj-field label{color:#083650;font-weight:800;font-size:13px}
+.tj-field input{width:100%;min-width:0;min-height:50px;padding:12px 15px;border:1px solid #bdd2dd;border-radius:8px;background:white;color:#083650;font:500 16px/1.4 var(--font)}
+.tj-field input::placeholder{color:#87a0ae;opacity:1}
+.tj-field input:focus-visible{outline:2px solid #0089b3;outline-offset:2px;border-color:#0089b3}
+.tj-field small{font-size:11px;color:#587889;line-height:1.5}
+.tj-field input[type=date]{min-height:50px}
+.tj-actions .btn-ghost{min-height:44px}
+@media(max-width:600px){.tj-form{gap:16px}.tj-field input{font-size:16px}.tj-field label{font-size:13px}}
