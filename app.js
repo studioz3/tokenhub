@@ -1,4 +1,4 @@
-import {renderBankJourney,mountBankJourney,validateBankStep,clearBankDraft} from './account-journey.js?v=account-v5';
+import {renderBankJourney,mountBankJourney,validateBankStep,clearBankDraft} from './account-journey.js?v=account-v6';
 import {mountUpConditions} from './up-conditions.js?v=up-handoff-v3';
 import {renderCompanies,mountCompanies} from './companies.js?v=journey-size-v15';
 import {mountVfx} from './vfx.js?v=experience-vfx-v31';
