@@ -1,0 +1,14 @@
+import assert from 'node:assert/strict';
+import fs from 'node:fs';
+const read=async name=>import('data:text/javascript;base64,'+Buffer.from(fs.readFileSync(new URL(name,import.meta.url),'utf8')).toString('base64'));
+const {buildWalletSnapshot,exampleWalletData}=await read('./wallet-model.js');
+const {dashboardMetrics,renderDashboardInsights}=await read('./dashboard-insights.js');
+const snapshot=buildWalletSnapshot(structuredClone(exampleWalletData)),m=dashboardMetrics(snapshot);
+assert.equal(m.monthCents,12500);assert.equal(m.credits.length,2);
+assert.deepEqual(m.allocation.map(a=>a.cents),[2750000,10000000,800000]);
+assert.equal(m.allocation.reduce((s,a)=>s+a.cents,0),m.total);
+assert.ok(Math.abs(m.allocation.reduce((s,a)=>s+a.percent,0)-100)<0.00001);
+const next=structuredClone(exampleWalletData);next.asOf='2026-11-01';const n=dashboardMetrics(buildWalletSnapshot(next));assert.equal(n.monthCents,0);assert.equal(n.total,m.total);
+const zero=structuredClone(exampleWalletData);zero.entries=[];const z=dashboardMetrics(buildWalletSnapshot(zero));assert.equal(z.total,0);assert.ok(z.allocation.every(a=>a.percent===0));
+assert.ok(renderDashboardInsights(snapshot,[{id:'solar',name:'<script>'}]).includes('&lt;script&gt;'));
+console.log('Dashboard: reconciliação, mês sem créditos, carteira vazia e escape aprovados.');
