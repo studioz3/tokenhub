@@ -88,3 +88,8 @@
 @media(max-width:1100px){.tj-visual{margin-top:12px}.tj-portrait{height:340px}.tj-card-scene{margin-top:-92px}}
 @media(max-width:600px){.tj-journey{margin-top:0}.tj-visual{padding:0;margin-top:18px}.tj-portrait{height:240px;border-radius:14px}.tj-card-scene{width:84%;margin-top:-60px}.tj-card{transform:rotateZ(-5deg) rotateX(5deg) rotateY(-8deg)}.tj-card-scene figcaption{font-size:9px;margin-top:25px}.tj-card-caption{margin-top:20px}}
 @media(prefers-reduced-motion:reduce){.tj-card-position{animation:none;translate:none}.tj-card{transform:rotateZ(-5deg)}}
+
+/* Give the opening steps a clearer visual hierarchy. */
+.tj-intro-steps li>span{width:50px;height:50px;font-size:20px;line-height:1;font-weight:800}
+.tj-intro-steps li{gap:20px;align-items:center}
+@media(max-width:600px){.tj-intro-steps li>span{width:46px;height:46px;font-size:18px}}
