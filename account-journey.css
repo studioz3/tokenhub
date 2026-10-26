@@ -70,3 +70,21 @@
 @media(max-width:1100px){.tj-grid{grid-template-columns:1fr;gap:20px}.tj-visual{position:relative;top:auto;max-width:580px;width:100%;justify-self:center}.tj-card-top>span{font-size:9px}.tj-card-number{font-size:24px}.tj-card-bottom small{font-size:8px}.tj-card-bottom strong{font-size:17px}.tj-content h2{max-width:650px}.tj-lead{max-width:650px}}
 @media(max-width:600px){.tj-journey{margin-top:15px}.tj-content{padding-top:0}.tj-content h2{font-size:30px}.tj-lead{font-size:13px}.tj-actions{align-items:stretch;flex-direction:column}.tj-actions .btn{width:100%;min-height:48px}.tj-visual{padding:20px 18px 24px;border-radius:18px}.tj-card-scene{margin-top:28px}.tj-card{border-radius:14px}.tj-card-number{font-size:clamp(16px,5vw,24px)}.tj-card-bottom strong{font-size:13px}.tj-card-bottom small{font-size:6px}.tj-card-top>span{font-size:7px}.tj-card-orbit{padding:6px}.tj-card-orbit .icon{width:14px;height:14px}.tj-rail ol{gap:8px;margin-bottom:26px}.tj-rail li{flex-direction:column;align-items:flex-start;gap:8px}.tj-rail strong{font-size:10px}.tj-rail li div>span{font-size:8px}.tj-card-caption{margin-top:24px}.tj-facts>div{padding:14px 16px}}
 @media(prefers-reduced-motion:reduce){.tj-card,.tj-visual-progress span{transition:none}.tj-card{transform:none}}
+
+/* Card floating above the original account photograph. */
+.tj-journey{margin-top:8px}
+.tj-visual{padding:0;border:0;border-radius:0;background:none;overflow:visible}
+.tj-portrait{width:100%;height:clamp(270px,24vw,370px);border-radius:18px;overflow:hidden;background:#ddeaf0}
+.tj-portrait .asset-photo{height:100%}
+.tj-portrait .asset-photo img{object-position:62% 46%}
+.tj-card-position{position:relative;z-index:1}
+.tj-card-scene{width:82%;max-width:490px;margin:-88px auto 0;padding:0;perspective:1100px}
+.tj-card{transform:rotateZ(-7deg) rotateX(calc(8deg + var(--rx,0deg))) rotateY(calc(-12deg + var(--ry,0deg)));box-shadow:0 28px 38px -12px #032a466e,inset 0 1px 0 #ffffff55,inset 0 -1px 0 #0005}
+.tj-card-scene figcaption{margin-top:32px}
+.tj-card-caption{margin-top:25px;padding-top:22px}
+.tj-visual-progress{margin-top:20px}
+@media(hover:hover) and (pointer:fine) and (prefers-reduced-motion:no-preference){.tj-card-position{animation:tj-card-float 6s ease-in-out infinite}}
+@keyframes tj-card-float{0%,100%{translate:0 0}50%{translate:0 -8px}}
+@media(max-width:1100px){.tj-visual{margin-top:12px}.tj-portrait{height:340px}.tj-card-scene{margin-top:-92px}}
+@media(max-width:600px){.tj-journey{margin-top:0}.tj-visual{padding:0;margin-top:18px}.tj-portrait{height:240px;border-radius:14px}.tj-card-scene{width:84%;margin-top:-60px}.tj-card{transform:rotateZ(-5deg) rotateX(5deg) rotateY(-8deg)}.tj-card-scene figcaption{font-size:9px;margin-top:25px}.tj-card-caption{margin-top:20px}}
+@media(prefers-reduced-motion:reduce){.tj-card-position{animation:none;translate:none}.tj-card{transform:rotateZ(-5deg)}}
