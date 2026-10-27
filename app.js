@@ -16,7 +16,7 @@ import {mountMotion} from './motion.js';
 import {mountAboutMotion} from './about-motion.js?v=film-fullscreen-v30';
 import {photo} from './photos.js';
 import {balanceCard,balanceDetails,toggleBalance,toggleAsset,toggleOtherAssets,copyAssetIdentifier,mountWalletBalances} from './wallet-details.js?v=wallet-model-v1';
-import {renderOtc,mountOtc} from './otc.js?v=otc-journey-v1';
+import {renderOtc,mountOtc} from './otc.js?v=otc-journey-v2';
 import {documents} from './documents.js';
 import {official,companyIdentity,officialServices,serviceContent,officialOnboarding} from './official.js?v=academy-feature-v2';
 
