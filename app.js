@@ -1,4 +1,4 @@
-import {renderAppNavigation,mountAppNavigation} from './app-navigation.js?v=sidebar-v1';
+import {renderAppNavigation,mountAppNavigation} from './app-navigation.js?v=sidebar-hover-v2';
 import {mountDashboardMotion} from './dashboard-motion.js?v=dashboard-ease-v1';
 import {renderDashboardInsights} from './dashboard-insights.js?v=client-insights-v1';
 import {getWalletSnapshot,subscribeWallet} from './wallet-model.js?v=wallet-model-v1';
@@ -165,4 +165,5 @@ render();
 
 
 subscribeWallet(()=>{if(['/app','/app/carteira','/app/extrato','/app/informe'].includes(route))refreshMain();});
+
 
