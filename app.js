@@ -1,4 +1,4 @@
-import {mountTokenAttention} from './token-attention.js?v=token-attention-v1';
+import {mountTokenAttention} from './token-attention.js?v=token-attention-v2';
 import {mountWalletTooltips} from './wallet-tooltips.js?v=wallet-help-v1';
 import {syncFavoriteButtons,animateFavorite} from './favorite-feedback.js?v=experience-feedback-v1';
 import {initInteractionSounds,playInteractionSound} from './interaction-sounds.js?v=number-ticks-v2';
