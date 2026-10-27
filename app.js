@@ -1,4 +1,4 @@
-import {renderAcademy,mountAcademy} from './academy.js?v=academy-v1';
+import {renderAcademy,mountAcademy} from './academy.js?v=learning-visuals-v1';
 import {renderTransparency} from './transparency.js?v=footer-review-v1';
 import {mountTokenAttention} from './token-attention.js?v=token-attention-v2';
 import {mountWalletTooltips} from './wallet-tooltips.js?v=wallet-help-v1';
@@ -171,6 +171,7 @@ initInteractionSounds();
 
 
 subscribeWallet(()=>{if(['/app','/app/carteira','/app/extrato','/app/informe'].includes(route))refreshMain();});
+
 
 
 
