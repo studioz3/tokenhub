@@ -1,3 +1,4 @@
+import {playNumberTick} from './interaction-sounds.js?v=number-ticks-v2';
 import {getWalletSnapshot} from './wallet-model.js?v=wallet-model-v1';
 const brl=value=>value.toLocaleString('pt-BR',{style:'currency',currency:'BRL'});
 const hidden=new Set();let expanded=false;
@@ -20,7 +21,7 @@ function countValue(element,value,decimals,format){
  const restoreLabel=()=>{if(previousLabel===null)element.removeAttribute('aria-label');else element.setAttribute('aria-label',previousLabel);};
  const stop=(settle=true)=>{cancelAnimationFrame(frame);if(settle)element.textContent=original;restoreLabel();counters.delete(element);};
  counters.set(element,stop);const formatter=format||((n)=>n.toLocaleString('pt-BR',{minimumFractionDigits:decimals,maximumFractionDigits:decimals}));
- const tick=time=>{if(!element.isConnected){stop(false);return;}start??=time;const progress=Math.min(1,(time-start)/1500);const eased=progress<.5?4*progress**3:1-(-2*progress+2)**3/2;element.textContent=formatter(value*eased);if(progress<1)frame=requestAnimationFrame(tick);else stop();};
+ const tick=time=>{if(!element.isConnected){stop(false);return;}start??=time;const progress=Math.min(1,(time-start)/1500);const eased=progress<.5?4*progress**3:1-(-2*progress+2)**3/2;const text=formatter(value*eased);if(text!==element.textContent){element.textContent=text;playNumberTick(progress);}if(progress<1)frame=requestAnimationFrame(tick);else stop();};
  frame=requestAnimationFrame(tick);
 }
 function animateAsset(card,asset){countValue(card.querySelector('[data-unit-amount]'),asset.amount,asset.decimals,n=>n.toLocaleString('pt-BR',{minimumFractionDigits:asset.decimals,maximumFractionDigits:asset.decimals})+' '+asset.symbol);countValue(card.querySelector('[data-fiat-amount]'),asset.fiat,2,brl);}
@@ -33,3 +34,4 @@ export function mountWalletBalances(root){
  reduced.addEventListener('change',()=>{if(reduced.matches)settle();},{signal});document.addEventListener('visibilitychange',()=>{if(document.hidden)settle();},{signal});
  return ()=>{controller.abort();observer.disconnect();settle();};
 }
+

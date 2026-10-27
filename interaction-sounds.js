@@ -15,9 +15,24 @@ export async function playInteractionSound(kind='navigate'){
   const buffer=context.createBuffer(1,Math.ceil(context.sampleRate*.028),context.sampleRate),channel=buffer.getChannelData(0);for(let i=0;i<channel.length;i++)channel[i]=(Math.random()*2-1)*Math.exp(-i/(context.sampleRate*.005));const noise=context.createBufferSource(),filter=context.createBiquadFilter(),noiseGain=context.createGain();noise.buffer=buffer;filter.type='lowpass';filter.frequency.value=1500;noiseGain.gain.value=.012;noise.connect(filter);filter.connect(noiseGain);noiseGain.connect(master);noise.start(start);noise.onended=()=>{noise.disconnect();filter.disconnect();noiseGain.disconnect();};
  }catch{enabled=false;try{localStorage.setItem('tokenhub:interface-sounds','off');}catch{}updateButton();}
 }
-export function initInteractionSounds(){if(initialized)return;initialized=true;button=document.createElement('button');button.type='button';button.className='interface-sound-toggle';button.dataset.soundToggle='';updateButton();document.body.append(button);
+// One shared clock for every counting surface: no timer and no overlapping tick streams.
+let lastNumberClick=-Infinity,numberBuffers=null;const nextNumberVariation=createVariationBag();
+function wakeAudio(){if(!enabled||document.hidden)return;try{const Audio=window.AudioContext||window.webkitAudioContext;if(!Audio)return;if(!context){context=new Audio();master=context.createGain();master.gain.value=.42;master.connect(context.destination);}if(context.state==='suspended')context.resume().catch(()=>{});}catch{}}
+export function playNumberTick(progress=.5){
+ if(!enabled||document.hidden||context?.state!=='running'||progress<=.015||progress>=.985)return;
+ const now=performance.now(),interval=progress<.15||progress>.85?125:90;if(now-lastNumberClick<interval||now-lastPlayed<140)return;
+ lastNumberClick=now;if([...document.querySelectorAll('audio,video')].some(m=>!m.paused&&!m.muted&&m.volume>0))return;
+ try{if(!numberBuffers)numberBuffers=soundVariations.map(v=>{const length=Math.ceil(context.sampleRate*.021*v.duration),buffer=context.createBuffer(1,length,context.sampleRate),data=buffer.getChannelData(0),ratio=2**(v.cents/1200);let low=0;for(let i=0;i<length;i++){const t=i/context.sampleRate,noise=Math.random()*2-1;low+=(noise-low)*.3;const envelope=Math.min(1,t/.0005)*Math.exp(-t/.0032),second=t>.005?Math.exp(-(t-.005)/.002):0;data[i]=((noise-low)*.8+Math.sin(2*Math.PI*1450*ratio*t)*.16)*(envelope+second*.18)*v.level;}return buffer;});
+ const variant=nextNumberVariation(),index=soundVariations.indexOf(variant),source=context.createBufferSource(),gain=context.createGain();source.buffer=numberBuffers[index];gain.gain.value=.045;source.connect(gain);gain.connect(master);source.start();source.onended=()=>{source.disconnect();gain.disconnect();};
+ }catch{}
+}
+export function initInteractionSounds(){if(initialized)return;initialized=true;button=document.createElement('button');button.type='button';button.className='interface-sound-toggle';button.dataset.soundToggle='';updateButton();document.body.append(button);if(enabled)wakeAudio();
  button.addEventListener('click',()=>{enabled=!enabled;try{localStorage.setItem('tokenhub:interface-sounds',enabled?'on':'off');}catch{}if(!enabled&&context?.state==='running')context.suspend().catch(()=>{});updateButton();if(enabled)playInteractionSound('confirm');});
  document.addEventListener('click',e=>{const target=e.target.closest('button,a');if(!e.isTrusted||!target||target.disabled||target.hasAttribute('data-favorite')||target.hasAttribute('data-sound-toggle'))return;if(target.matches('#otc-confirm,#otc-request,[data-action="bank-start"],[data-action="bank-back"],[data-action="bank-restart"]'))playInteractionSound('confirm');else if(target.matches('.sidebar .nav-item,.site-nav a,.chip,[role="tab"]'))playInteractionSound('navigate');});
- document.addEventListener('change',e=>{if(e.isTrusted&&e.target.matches('.simulation-range'))playInteractionSound('adjust');});
+ document.addEventListener('pointerdown',e=>{if(e.isTrusted)wakeAudio();},{capture:true,passive:true});
+ document.addEventListener('keydown',e=>{if(e.isTrusted)wakeAudio();},{capture:true});
+ document.addEventListener('input',e=>{if(e.isTrusted&&e.target.matches('input[type=number],input[type=range]'))playNumberTick();});
+ document.addEventListener('click',e=>{if(e.isTrusted&&e.target.closest('[data-up-token-minus],[data-up-token-plus]'))playNumberTick();});
  document.addEventListener('visibilitychange',()=>{if(document.hidden&&context?.state==='running')context.suspend().catch(()=>{});});
 }
+

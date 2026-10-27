@@ -1,3 +1,4 @@
+import {playNumberTick} from './interaction-sounds.js?v=number-ticks-v2';
 // Shared, dependency-free effects. Financial values always settle on their source text.
 export function mountVfx(root){
  const controller=new AbortController(),{signal}=controller;
@@ -24,7 +25,7 @@ export function mountVfx(root){
   let frame=0,start;
   const finish=()=>{cancelAnimationFrame(frame);visual.replaceWith(node);node.nodeValue=original;if(previousLabel===null)element.removeAttribute('aria-label');else element.setAttribute('aria-label',previousLabel);running.delete(finish);};
   running.add(finish);
-  const tick=time=>{if(disposed||stopped()||!element.isConnected){finish();return;}start??=time;const p=Math.min(1,(time-start)/1100),eased=1-Math.pow(1-p,3);visual.textContent=original.replace(raw,format.format(value*eased));if(p<1)frame=requestAnimationFrame(tick);else finish();};
+  const tick=time=>{if(disposed||stopped()||!element.isConnected){finish();return;}start??=time;const p=Math.min(1,(time-start)/1100),eased=1-Math.pow(1-p,3);const text=original.replace(raw,format.format(value*eased));if(visual.textContent!==text){visual.textContent=text;playNumberTick(p);}if(p<1)frame=requestAnimationFrame(tick);else finish();};
   frame=requestAnimationFrame(tick);
  };
  const selector='.catalog-facts,.offer-metrics,.catalog-funding,.offer-card .progress,.up-fact-strip,.cta-band,.auth-form';
@@ -47,3 +48,4 @@ export function mountVfx(root){
  document.addEventListener('visibilitychange',()=>{if(document.hidden)settle();},{signal});
  return ()=>{disposed=true;controller.abort();observer.disconnect();mutations.disconnect();cancelAnimationFrame(pointerFrame);settle();reset();};
 }
+

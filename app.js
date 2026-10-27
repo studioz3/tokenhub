@@ -1,8 +1,9 @@
+import {mountTokenAttention} from './token-attention.js?v=token-attention-v1';
 import {mountWalletTooltips} from './wallet-tooltips.js?v=wallet-help-v1';
 import {syncFavoriteButtons,animateFavorite} from './favorite-feedback.js?v=experience-feedback-v1';
-import {initInteractionSounds,playInteractionSound} from './interaction-sounds.js?v=experience-feedback-v1';
+import {initInteractionSounds,playInteractionSound} from './interaction-sounds.js?v=number-ticks-v2';
 import {renderAppNavigation,mountAppNavigation} from './app-navigation.js?v=sidebar-hover-v2';
-import {mountDashboardMotion} from './dashboard-motion.js?v=dashboard-ease-v1';
+import {mountDashboardMotion} from './dashboard-motion.js?v=number-ticks-v2';
 import {renderDashboardInsights} from './dashboard-insights.js?v=client-insights-v1';
 import {getWalletSnapshot,subscribeWallet} from './wallet-model.js?v=wallet-model-v1';
 const walletSummary=()=>getWalletSnapshot().totals;
@@ -11,7 +12,7 @@ const withdrawalLimit=()=>getWalletSnapshot().assets.find(a=>a.id==='brl')?.fiat
 import {renderBankJourney,mountBankJourney,validateBankStep,clearBankDraft} from './account-journey.js?v=account-copy-v8';
 import {mountUpConditions} from './up-conditions.js?v=up-handoff-v3';
 import {renderCompanies,mountCompanies} from './companies.js?v=journey-size-v15';
-import {mountVfx} from './vfx.js?v=experience-vfx-v31';
+import {mountVfx} from './vfx.js?v=number-ticks-v2';
 import {openUpGallery} from './up-gallery.js?v=gallery-v21';
 import {upOpportunity,upCard,upDetail,upPhotos} from './up.js?v=up-handoff-v3';
 import {offers,faq,articles} from './data.js';
@@ -19,7 +20,7 @@ import {renderSimulator,updateSimulator,mountSimulator} from './simulator.js?v=e
 import {mountMotion} from './motion.js';
 import {mountAboutMotion} from './about-motion.js?v=film-fullscreen-v30';
 import {photo} from './photos.js';
-import {balanceCard,balanceDetails,toggleBalance,toggleAsset,toggleOtherAssets,copyAssetIdentifier,mountWalletBalances} from './wallet-details.js?v=wallet-model-v1';
+import {balanceCard,balanceDetails,toggleBalance,toggleAsset,toggleOtherAssets,copyAssetIdentifier,mountWalletBalances} from './wallet-details.js?v=number-ticks-v2';
 import {renderOtc,mountOtc} from './otc.js?v=otc-journey-v2';
 import {documents} from './documents.js';
 import {official,companyIdentity,officialServices,serviceContent,officialOnboarding} from './official.js?v=academy-feature-v2';
@@ -94,7 +95,7 @@ function incomeReport(){return shell(`${heading('Informe de rendimentos','Uma vi
 function empty(title,text,button='',action=''){return `<div class="empty">${icon('layers')}<h3>${title}</h3><p>${text}</p>${button?`<button class="btn btn-outline btn-sm" data-action="${action}">${button}</button>`:''}</div>`;}
 function notFound(){return site(`${pageHero('Vamos encontrar o caminho','Página não encontrada.','O endereço pode ter mudado. Você pode voltar ao início ou explorar as oportunidades.')}<section class="section"><div class="container row wrap">${arrow('Ir para o início','#/','btn btn-dark')}${arrow('Ver oportunidades','#/oportunidades','btn btn-outline')}</div></section>`);}
 
-function render(){disposeMotion();disposeOtc();route=(location.hash.slice(1)||'/').split('?')[0].replace(/\/$/,'')||'/';if(route!=='/app/conta-digital'){clearBankDraft();state.bankStep=0;}let html;const parts=route.split('/').filter(Boolean);if(route==='/')html=home();else if(route==='/oportunidades')html=opportunities();else if(parts[0]==='oferta')html=offerDetail(parts[1]);else if(parts[0]==='ecossistema'){const content=serviceContent(parts[1],icon);html=content?site(content):notFound();}else if(route==='/como-funciona')html=how();else if(route==='/quem-somos')html=about();else if(route==='/para-empresas')html=companies();else if(route==='/contato')html=contact();else if(route==='/faq')html=faqPage();else if(parts[0]==='conteudos')html=contentPage(parts[1]);else if(route==='/material-didatico')html=legal('material');else if(parts[0]==='legal')html=legal(parts[1]);else if(route==='/sobre-prototipo')html=prototypeInfo();else if(route==='/entrar')html=auth();else if(route==='/cadastro')html=auth('register');else if(route==='/recuperar-senha')html=auth('forgot');else if(route==='/app')html=dashboard();else if(route==='/app/oportunidades')html=opportunities(true);else if(parts[0]==='app'&&parts[1]==='oferta')html=offerDetail(parts[2],true);else if(route==='/app/carteira')html=wallet();else if(route==='/app/extrato')html=extract();else if(route==='/app/conta-digital')html=bank();else if(parts[0]==='app'&&parts[1]==='marketplace')html=marketplace(parts[2]);else if(route==='/app/otc')html=otc();else if(route==='/app/indicacoes')html=referrals();else if(route==='/app/perfil')html=profile();else if(route==='/app/informe')html=incomeReport();else html=notFound();app.innerHTML=html;syncFavoriteButtons(app,state.favorites,[upOpportunity,...offers]);const simulatorMotion=mountSimulator(app);const appNavigation=mountAppNavigation(app);const dashboardMotion=mountDashboardMotion(app);const walletTooltips=mountWalletTooltips(app);const walletBalances=mountWalletBalances(app);const accountJourney=mountBankJourney(app);const baseMotion=mountMotion(app),aboutMotion=mountAboutMotion(app);const vfxMotion=mountVfx(app);const businessMotion=mountCompanies(app),upConditions=mountUpConditions(app);disposeMotion=()=>{walletTooltips();simulatorMotion();appNavigation();dashboardMotion();walletBalances();accountJourney();upConditions();businessMotion();vfxMotion();baseMotion();aboutMotion();};disposeOtc=mountOtc(app,icon);const h=app.querySelector('h1');document.title=(h?h.textContent.trim():'Meu espaço')+' | TokenHub';}
+function render(){disposeMotion();disposeOtc();route=(location.hash.slice(1)||'/').split('?')[0].replace(/\/$/,'')||'/';if(route!=='/app/conta-digital'){clearBankDraft();state.bankStep=0;}let html;const parts=route.split('/').filter(Boolean);if(route==='/')html=home();else if(route==='/oportunidades')html=opportunities();else if(parts[0]==='oferta')html=offerDetail(parts[1]);else if(parts[0]==='ecossistema'){const content=serviceContent(parts[1],icon);html=content?site(content):notFound();}else if(route==='/como-funciona')html=how();else if(route==='/quem-somos')html=about();else if(route==='/para-empresas')html=companies();else if(route==='/contato')html=contact();else if(route==='/faq')html=faqPage();else if(parts[0]==='conteudos')html=contentPage(parts[1]);else if(route==='/material-didatico')html=legal('material');else if(parts[0]==='legal')html=legal(parts[1]);else if(route==='/sobre-prototipo')html=prototypeInfo();else if(route==='/entrar')html=auth();else if(route==='/cadastro')html=auth('register');else if(route==='/recuperar-senha')html=auth('forgot');else if(route==='/app')html=dashboard();else if(route==='/app/oportunidades')html=opportunities(true);else if(parts[0]==='app'&&parts[1]==='oferta')html=offerDetail(parts[2],true);else if(route==='/app/carteira')html=wallet();else if(route==='/app/extrato')html=extract();else if(route==='/app/conta-digital')html=bank();else if(parts[0]==='app'&&parts[1]==='marketplace')html=marketplace(parts[2]);else if(route==='/app/otc')html=otc();else if(route==='/app/indicacoes')html=referrals();else if(route==='/app/perfil')html=profile();else if(route==='/app/informe')html=incomeReport();else html=notFound();app.innerHTML=html;syncFavoriteButtons(app,state.favorites,[upOpportunity,...offers]);const simulatorMotion=mountSimulator(app);const tokenAttention=mountTokenAttention(app);const appNavigation=mountAppNavigation(app);const dashboardMotion=mountDashboardMotion(app);const walletTooltips=mountWalletTooltips(app);const walletBalances=mountWalletBalances(app);const accountJourney=mountBankJourney(app);const baseMotion=mountMotion(app),aboutMotion=mountAboutMotion(app);const vfxMotion=mountVfx(app);const businessMotion=mountCompanies(app),upConditions=mountUpConditions(app);disposeMotion=()=>{tokenAttention();walletTooltips();simulatorMotion();appNavigation();dashboardMotion();walletBalances();accountJourney();upConditions();businessMotion();vfxMotion();baseMotion();aboutMotion();};disposeOtc=mountOtc(app,icon);const h=app.querySelector('h1');document.title=(h?h.textContent.trim():'Meu espaço')+' | TokenHub';}
 function refreshMain(){const scroll=window.scrollY;const id=document.activeElement?.id;render();window.scrollTo(0,scroll);if(id)document.getElementById(id)?.focus({preventScroll:true});}
 function toast(message){const el=document.querySelector('#toast');el.textContent=message;el.classList.add('show');clearTimeout(toastTimer);toastTimer=setTimeout(()=>el.classList.remove('show'),4200);}
 function openDialog(title,body){const d=document.querySelector('#dialog');if(!d.open)lastDialogFocus=document.activeElement;d.innerHTML=`<div class="dialog-head"><h2 id="dialog-title">${title}</h2><button class="icon-button" data-action="close-dialog" aria-label="Fechar janela">${icon('close')}</button></div><div class="dialog-body">${body}</div>`;d.showModal();}
@@ -169,6 +170,7 @@ initInteractionSounds();
 
 
 subscribeWallet(()=>{if(['/app','/app/carteira','/app/extrato','/app/informe'].includes(route))refreshMain();});
+
 
 
 
