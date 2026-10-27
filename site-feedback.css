@@ -10,3 +10,20 @@
 
 .catalog-save[data-favorite]{position:absolute;z-index:3}
 @media(max-width:540px){body:has(#toast.show) .interface-sound-toggle{bottom:84px}}
+
+
+/* Keep the account notice at the foot of the available view, after the journey. */
+.app-content:has(.tj-journey){display:flex;flex-direction:column;min-height:calc(100svh - 82px)}
+.tj-journey{display:flex;flex-direction:column;flex:1}.tj-journey .tj-grid{flex:0 0 auto;margin-bottom:48px}.tj-journey .tj-bottom-note{flex-shrink:0;margin-top:auto}
+/* Favorite hearts stay anchored; the button supplies the hover feedback. */
+[data-favorite]{transition:background 200ms ease,color 200ms ease,box-shadow 220ms ease,transform 220ms cubic-bezier(.22,1,.36,1),width 200ms ease!important}
+[data-favorite] .icon{translate:none!important;transition:fill 180ms ease,color 180ms ease,transform 220ms cubic-bezier(.22,1,.36,1)!important}
+.btn[data-favorite] .icon,.btn[data-favorite]:hover .icon,.btn[data-favorite]:focus-visible .icon{translate:none!important;transform:none}
+.btn[data-favorite]:hover{box-shadow:0 7px 18px #08365012;transform:translateY(-1px)}
+.wallet-tooltip{position:fixed;z-index:120;max-width:calc(100vw - 24px);width:max-content;pointer-events:none;visibility:hidden;opacity:0;padding:10px 14px;background:#083650;color:#f4fbff;border:1px solid #427287;border-radius:9px;font-size:12px;font-weight:500;line-height:1.4;white-space:nowrap;box-shadow:0 7px 22px #052b4129;transform:translateY(5px) scale(.97);transform-origin:var(--tip-arrow-x,50%) bottom;transition:opacity 140ms ease,transform 180ms cubic-bezier(.22,1,.36,1),visibility 0s 180ms}
+.wallet-tooltip:after{content:'';position:absolute;left:var(--tip-arrow-x,50%);bottom:-5px;width:8px;height:8px;transform:translateX(-50%) rotate(45deg);background:#083650;border-right:1px solid #427287;border-bottom:1px solid #427287}
+.wallet-tooltip[data-placement=below]{transform:translateY(-5px) scale(.97);transform-origin:var(--tip-arrow-x,50%) top}.wallet-tooltip[data-placement=below]:after{bottom:auto;top:-5px;transform:translateX(-50%) rotate(225deg)}
+.wallet-tooltip.is-open{visibility:visible;opacity:1;transform:translateY(0) scale(1);transition-delay:0s}
+@media(max-width:760px){.app-content:has(.tj-journey){min-height:calc(100svh - 68px)}.tj-journey .tj-grid{margin-bottom:32px}}
+@media(hover:none) and (pointer:coarse){.asset-actions{gap:5px;flex-wrap:wrap}.asset-actions .balance-eye{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:4px;width:auto;min-width:54px;height:auto;min-height:48px;padding:7px 6px}.asset-actions .balance-eye:after{content:attr(data-action-caption);font-size:9px;line-height:1.3}}
+@media(prefers-reduced-motion:reduce){.wallet-tooltip,[data-favorite],[data-favorite] .icon{transition:none!important}.btn[data-favorite]:hover{transform:none}}

@@ -1,0 +1,16 @@
+let sequence=0;
+export function mountWalletTooltips(root){
+ if(!root.querySelector('.balance-details'))return ()=>{};
+ const selector='button[data-asset-toggle],button[data-balance-toggle],button[data-asset-copy],.asset-actions button[data-wallet-action]';
+ const controller=new AbortController(),{signal}=controller,fine=matchMedia('(hover: hover) and (pointer: fine)'),tooltip=document.createElement('div');tooltip.id='wallet-tooltip-'+(++sequence);tooltip.className='wallet-tooltip';tooltip.setAttribute('role','tooltip');document.body.append(tooltip);
+ const titles=new Map();for(const b of root.querySelectorAll(selector)){if(b.hasAttribute('title')){titles.set(b,b.getAttribute('title'));b.removeAttribute('title');}if(b.closest('.asset-actions'))b.dataset.actionCaption=b.hasAttribute('data-asset-copy')?'Copiar':b.hasAttribute('data-asset-toggle')?'Saldo':b.dataset.walletAction;}
+ let active=null,pending=null,showTimer=0,previousDescription=null;
+ const label=b=>b.hasAttribute('data-asset-copy')?'Copiar identificador':b.hasAttribute('data-asset-toggle')||b.hasAttribute('data-balance-toggle')?(b.getAttribute('aria-pressed')==='true'?'Mostrar saldo':'Ocultar saldo'):b.dataset.walletAction==='Sacar'?'Sacar em reais':'Transferir';
+ function hide(){clearTimeout(showTimer);pending=null;tooltip.classList.remove('is-open');if(active){if(previousDescription===null)active.removeAttribute('aria-describedby');else active.setAttribute('aria-describedby',previousDescription);}active=null;previousDescription=null;}
+ function show(b){if(!b.isConnected)return;hide();active=b;previousDescription=b.getAttribute('aria-describedby');b.setAttribute('aria-describedby',[previousDescription,tooltip.id].filter(Boolean).join(' '));tooltip.textContent=label(b);const box=b.getBoundingClientRect(),tip={width:tooltip.offsetWidth,height:tooltip.offsetHeight},above=box.top-tip.height-12>=8;const x=Math.max(12,Math.min(innerWidth-tip.width-12,box.left+box.width/2-tip.width/2)),y=above?box.top-tip.height-12:box.bottom+12;tooltip.dataset.placement=above?'above':'below';tooltip.style.left=x+'px';tooltip.style.top=Math.max(8,Math.min(innerHeight-tip.height-8,y))+'px';tooltip.style.setProperty('--tip-arrow-x',Math.max(14,Math.min(tip.width-14,box.left+box.width/2-x))+'px');tooltip.classList.add('is-open');}
+ root.addEventListener('pointerover',e=>{if(!fine.matches||e.pointerType==='touch')return;const b=e.target.closest(selector);if(!b||b===active||b===pending)return;hide();pending=b;showTimer=setTimeout(()=>show(b),150);},{signal});
+ root.addEventListener('pointerout',e=>{const b=e.target.closest(selector);if(b&&!b.contains(e.relatedTarget)&&!b.matches(':focus-visible'))hide();},{signal});
+ root.addEventListener('focusin',e=>{const b=e.target.closest(selector);if(b&&b.matches(':focus-visible'))show(b);},{signal});root.addEventListener('focusout',e=>{if(e.target.closest(selector))hide();},{signal});
+ root.addEventListener('click',e=>{if(e.target.closest(selector))hide();},{signal});document.addEventListener('keydown',e=>{if(e.key==='Escape')hide();},{signal});window.addEventListener('scroll',hide,{signal,capture:true,passive:true});window.addEventListener('resize',hide,{signal,passive:true});
+ return ()=>{hide();controller.abort();tooltip.remove();for(const [b,title] of titles)b.setAttribute('title',title);};
+}
